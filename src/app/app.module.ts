@@ -6,16 +6,14 @@ import {RouterModule} from '@angular/router';
 
 import {routes} from './app-routing';
 import {AppComponent} from './app.component';
-import {ArticleEditComponent} from './article/article-edit.component';
-import {ArticleListComponent} from './article/article-list.component';
+import {ArticleModule} from './article';
 import {EmptyComponent} from './layout/empty.component';
 import {RouterOutletComponent} from './layout/router-outlet.component';
 import {LoginModule} from './login';
 
 @NgModule({
   declarations: [
-    AppComponent, EmptyComponent, RouterOutletComponent,
-    ArticleListComponent, ArticleEditComponent
+    AppComponent, EmptyComponent, RouterOutletComponent
   ],
   imports: [
     // lib
@@ -24,7 +22,7 @@ import {LoginModule} from './login';
     RouterModule.forRoot(routes),
     HttpClientModule,
     // app
-    LoginModule,
+    LoginModule, ArticleModule
   ],
   providers: [],
   bootstrap: [AppComponent],
