@@ -1,8 +1,14 @@
 import {Routes} from '@angular/router';
-import {EmptyComponent} from './layout/empty.component';
+
+import {IndexComponent} from './index.component';
+import {RouterOutletComponent} from './layout/router-outlet.component';
 import {LoginGuard} from './login';
 
 export const routes: Routes = [
-  {path: '', component: EmptyComponent, canActivate: [LoginGuard]},
-  {path: 'article', loadChildren: 'app/article/article.module#ArticleModule'},
+  {path: '', component: IndexComponent},
+  {
+    path: 'article', component: RouterOutletComponent, canActivate: [LoginGuard], children: [
+      {path: '', loadChildren: 'app/article/article.module#ArticleModule'},
+    ]
+  },
 ];

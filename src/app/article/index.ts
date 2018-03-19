@@ -1,1 +1,1 @@
-export * from './article.module';
+export {ArticleModule} from './article.module';

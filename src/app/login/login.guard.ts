@@ -13,7 +13,7 @@ export class LoginGuard implements CanActivate {
   ) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.loginService.jwtToken) {
       return true;
     }
@@ -21,4 +21,5 @@ export class LoginGuard implements CanActivate {
     this.router.navigate([`/${LOGIN_ROUTE}`], {queryParams: {[ORIGINAL_URL]: state.url}});
     return false;
   }
+
 }
