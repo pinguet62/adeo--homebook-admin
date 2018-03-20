@@ -7,35 +7,59 @@ import {LoginService} from './login.service';
 @Component({
   selector: 'app-login',
   template: `
-    <form #loginForm="ngForm" (ngSubmit)="onLogin()" class="login">
-      <mat-form-field>
-        <input
-          [(ngModel)]="email" #emailModel="ngModel" name="email"
-          type="email"
-          required email
-          placeholder="Email"
-          matInput>
-      </mat-form-field>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+      <mat-card class="login-card">
+        <mat-card-header>
+          <mat-card-title><h1>Login</h1></mat-card-title>
+        </mat-card-header>
 
-      <mat-form-field>
-        <input
-          [(ngModel)]="password" #passwordModel="ngModel" name="password"
-          type="password"
-          required
-          placeholder="Password"
-          matInput>
-      </mat-form-field>
+        <mat-card-content class="login-fields">
+          <mat-form-field>
+            <input
+              [(ngModel)]="email" #emailModel="ngModel" name="email"
+              type="email"
+              required email
+              placeholder="Email"
+              matInput>
+          </mat-form-field>
 
-      <button
-        type="submit"
-        [disabled]="!loginForm.form.valid"
-        mat-raised-button>
-        Login
-      </button>
+          <mat-form-field>
+            <input
+              [(ngModel)]="password" #passwordModel="ngModel" name="password"
+              type="password"
+              required
+              placeholder="Password"
+              matInput>
+          </mat-form-field>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button
+            type="submit"
+            [disabled]="!loginForm.form.valid"
+            mat-raised-button color="primary">
+            Login
+          </button>
+        </mat-card-actions>
+      </mat-card>
     </form>
   `,
   styles: [`
-    .login {
+    /* center */
+    :host {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  `, `
+    .login-card {
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .login-fields {
       display: flex;
       flex-direction: column;
     }

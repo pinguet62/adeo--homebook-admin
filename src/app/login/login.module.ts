@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 
 import {AuthorizationInterceptor} from './authorization-interceptor';
@@ -19,7 +19,7 @@ import {LoginService} from './login.service';
     CommonModule,
     FormsModule, ReactiveFormsModule,
     // lib
-    MatButtonModule, MatFormFieldModule, MatInputModule,
+    MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule,
     // app
     RouterModule.forChild(routes),
   ],

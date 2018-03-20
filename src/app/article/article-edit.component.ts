@@ -82,7 +82,7 @@ export class PreviewDialogComponent implements AfterViewInit {
       <button
         [disabled]="!articleForm.form.valid"
         (click)="onSave()"
-        mat-raised-button>
+        mat-raised-button color="primary">
         Save
       </button>
     </form>
