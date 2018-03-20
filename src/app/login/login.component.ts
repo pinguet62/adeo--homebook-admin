@@ -1,18 +1,14 @@
 import {Component, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import {ORIGINAL_URL} from './constants';
 import {LoginService} from './login.service';
 
 @Component({
-  selector: 'app-login',
   template: `
     <form #loginForm="ngForm" (ngSubmit)="onLogin()">
       <mat-card class="login-card">
-        <mat-card-header>
-          <mat-card-title><h1>Login</h1></mat-card-title>
-        </mat-card-header>
-
         <mat-card-content class="login-fields">
           <mat-form-field>
             <input
@@ -74,8 +70,10 @@ export class LoginComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    titleService: Title,
     private loginService: LoginService
   ) {
+    titleService.setTitle('Login');
   }
 
   ngOnInit(): void {

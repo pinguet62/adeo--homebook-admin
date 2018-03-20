@@ -7,9 +7,12 @@ import {Observable} from 'rxjs/Observable';
 import {environment} from '../../environments/environment';
 import {HomebookResult} from '../homebookResult';
 
+const LOCALSTORAGE_JWTTOKEN_KEY = 'jwtToken';
+
 @Injectable()
 export class LoginService {
-  public jwtToken: string = null;
+
+  public jwtToken: string = window.localStorage.getItem(LOCALSTORAGE_JWTTOKEN_KEY);
 
   constructor(private http: HttpClient) {
   }
@@ -25,6 +28,12 @@ export class LoginService {
         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       })
       .map((it) => it.data)
-      .do((token) => this.jwtToken = token);
+      .do(this.processLogin);
   }
+
+  private processLogin(secret: string) {
+    this.jwtToken = secret;
+    window.localStorage.setItem(LOCALSTORAGE_JWTTOKEN_KEY, secret);
+  }
+
 }
