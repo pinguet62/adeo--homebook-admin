@@ -3,15 +3,12 @@ import {Title} from '@angular/platform-browser';
 
 @Component({
   template: `
-    <div>
-      <button routerLink="/article" mat-raised-button>Articles</button>
-    </div>
-  `
+    <router-outlet></router-outlet>`
 })
-export class IndexComponent {
+export class ArticleComponent {
 
   constructor(titleService: Title) {
-    titleService.setTitle(null);
+    titleService.setTitle('Articles');
   }
 
 }

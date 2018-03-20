@@ -6,12 +6,13 @@ import {RouterModule} from '@angular/router';
 
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
 import {ArticleListComponent} from './article-list.component';
+import {ArticleComponent} from './article.component';
 import {routes} from './article-routing';
 import {ArticleService} from './article.service';
 
 @NgModule({
   declarations: [
-    ArticleListComponent, ArticleEditComponent, PreviewDialogComponent,
+    ArticleComponent, ArticleListComponent, ArticleEditComponent, PreviewDialogComponent,
   ],
   entryComponents: [
     PreviewDialogComponent
