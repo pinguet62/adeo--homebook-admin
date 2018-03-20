@@ -1,29 +1,20 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Inject, Input, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatChipInputEvent, MatDialog} from '@angular/material';
-import * as markdown from 'markdown-it';
 
 import {IArticle} from './article.service';
 
-export interface PreviewDialogData {
-  html: string;
-}
+type DialogDataType = IArticle;
 
 @Component({
   template: `
     <mat-dialog-content>
-      <div #contentHtml></div>
+      <app-article-contents [markdown]="data.contents"></app-article-contents>
     </mat-dialog-content>
   `
 })
-export class PreviewDialogComponent implements AfterViewInit {
+export class PreviewDialogComponent {
 
-  @ViewChild('contentHtml', {read: ElementRef}) contentHtml: ElementRef;
-
-  constructor(@Inject(MAT_DIALOG_DATA) private data: PreviewDialogData) {
-  }
-
-  ngAfterViewInit() {
-    this.contentHtml.nativeElement.innerHTML = this.data.html;
+  constructor(@Inject(MAT_DIALOG_DATA) private data: DialogDataType) {
   }
 
 }
@@ -52,7 +43,7 @@ export class PreviewDialogComponent implements AfterViewInit {
           [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"
           placeholder="Contents"
           matInput rows="10"></textarea>
-        <mat-icon (click)="renderContentHtml()" matSuffix>visibility</mat-icon>
+        <mat-icon (click)="showPreview()" matSuffix>visibility</mat-icon>
       </mat-form-field>
 
       <mat-form-field>
@@ -78,6 +69,7 @@ export class PreviewDialogComponent implements AfterViewInit {
       </mat-form-field>
 
       <button
+        type="submit"
         [disabled]="!articleForm.form.valid"
         (click)="edited.emit(article)"
         mat-raised-button color="primary">
@@ -120,9 +112,8 @@ export class ArticleEditComponent {
     this.article.tags.splice(this.article.tags.indexOf(value), 1);
   }
 
-  renderContentHtml() {
-    const html = markdown({html: true}).render(this.article.contents);
-    this.dialog.open<PreviewDialogComponent, PreviewDialogData>(PreviewDialogComponent, {data: {html}});
+  showPreview() {
+    this.dialog.open<PreviewDialogComponent, DialogDataType>(PreviewDialogComponent, {data: this.article});
   }
 
 }
