@@ -4,15 +4,16 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule, MatTableModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 
-import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
+import {ArticleCreateComponent} from './article-create.component';
 import {ArticleListComponent} from './article-list.component';
-import {ArticleComponent} from './article.component';
+import {ArticleUpdateComponent, PreviewDialogComponent} from './article-update.component';
 import {routes} from './article-routing';
+import {ArticleComponent} from './article.component';
 import {ArticleService} from './article.service';
 
 @NgModule({
   declarations: [
-    ArticleComponent, ArticleListComponent, ArticleEditComponent, PreviewDialogComponent,
+    ArticleComponent, ArticleListComponent, ArticleCreateComponent, ArticleUpdateComponent, PreviewDialogComponent,
   ],
   entryComponents: [
     PreviewDialogComponent

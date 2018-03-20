@@ -1,34 +1,16 @@
-import {AfterViewInit, Component, ElementRef, Inject, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
-import {ActivatedRoute} from '@angular/router';
+import {Component} from '@angular/core';
+import {MatDialog} from '@angular/material';
+import {ActivatedRoute, Router} from '@angular/router';
 import * as markdown from 'markdown-it';
 
-import {ArticleService, IArticle} from './article.service';
+import {PreviewDialogComponent} from './article-update.component';
+import {ArticleService} from './article.service';
 
 interface PreviewDialogData {
   html: string;
 }
 
 @Component({
-  template: `
-    <mat-dialog-content>
-      <div #contentHtml></div>
-    </mat-dialog-content>
-  `
-})
-export class PreviewDialogComponent implements AfterViewInit {
-  @ViewChild('contentHtml', {read: ElementRef}) contentHtml: ElementRef;
-
-  constructor(@Inject(MAT_DIALOG_DATA) private data: PreviewDialogData) {
-  }
-
-  ngAfterViewInit() {
-    this.contentHtml.nativeElement.innerHTML = this.data.html;
-  }
-}
-
-@Component({
-  selector: 'app-article-edit',
   template: `
     <form *ngIf="article" #articleForm="ngForm" class="article">
       <mat-form-field>
@@ -99,23 +81,21 @@ export class PreviewDialogComponent implements AfterViewInit {
     }
   `]
 })
-export class ArticleEditComponent {
+export class ArticleCreateComponent {
 
-  article: IArticle = null;
+  article: any = {
+    content: '',
+    tags: [],
+  };
 
   tmpTag = '';
 
   constructor(
-    route: ActivatedRoute,
+    private router: Router,
+    private route: ActivatedRoute,
     private articleService: ArticleService,
     private dialog: MatDialog
   ) {
-    route.paramMap.subscribe((p) => {
-      const articleId = p.get('_id');
-      this.articleService.get(articleId).subscribe((a) =>
-        this.article = a
-      );
-    });
   }
 
   renderContentHtml() {
@@ -124,9 +104,10 @@ export class ArticleEditComponent {
   }
 
   onSave() {
-    this.articleService.update(this.article).subscribe((a) =>
-      this.article = a
-    );
+    this.articleService.update(this.article).subscribe((a) => {
+      this.article = a;
+      this.router.navigate(['../'], {relativeTo: this.route}); // list
+    });
   }
 
 }

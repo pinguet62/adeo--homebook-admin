@@ -71,4 +71,9 @@ export class ArticleService {
       .map((it) => it.data);
   }
 
+  delete(article: IArticle): Observable<any> {
+    return this.http
+      .delete<HomebookResult<IArticle>>(environment.apiUrl + `/package-management/article/${article._id}`);
+  }
+
 }
