@@ -5,6 +5,10 @@ import {ArticleService, IArticle} from './article.service';
 
 @Component({
   template: `
+    <mat-form-field>
+      <input [(ngModel)]="search" (keyup)="refresh()" placeholder="Search..." matInput>
+    </mat-form-field>
+
     <mat-table [dataSource]="articles">
       <ng-container matColumnDef="_id">
         <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
@@ -52,6 +56,8 @@ export class ArticleListComponent {
 
   readonly displayedColumns = ['_id', 'title', 'actions'];
 
+  search: string;
+
   articles: IArticle[] = [];
 
   constructor(
@@ -61,8 +67,8 @@ export class ArticleListComponent {
     this.refresh();
   }
 
-  private refresh() {
-    this.articleService.list().subscribe((x) =>
+  public refresh() {
+    this.articleService.list(this.search).subscribe((x) =>
       this.articles = x
     );
   }
