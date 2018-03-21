@@ -13,6 +13,7 @@ import {
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
 
+import {ConfirmDialogModule} from '../common';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
@@ -37,6 +38,7 @@ import {ArticleService} from './article.service';
     MatButtonModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule, MatTableModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
+    ConfirmDialogModule,
   ],
   exports: [
     RouterModule

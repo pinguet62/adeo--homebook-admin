@@ -92,7 +92,7 @@ export class ArticleEditComponent {
   @Output()
   edited: EventEmitter<IArticle> = new EventEmitter<IArticle>();
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialogService: MatDialog) {
   }
 
   addTag(event: MatChipInputEvent) {
@@ -113,7 +113,7 @@ export class ArticleEditComponent {
   }
 
   showPreview() {
-    this.dialog.open<PreviewDialogComponent, DialogDataType>(PreviewDialogComponent, {data: this.article});
+    this.dialogService.open<PreviewDialogComponent, DialogDataType>(PreviewDialogComponent, {data: this.article});
   }
 
 }
