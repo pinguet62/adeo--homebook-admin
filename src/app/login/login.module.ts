@@ -1,11 +1,11 @@
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 
-import {AuthorizationInterceptor} from './authorization-interceptor';
+import {AuthorizationHttpInterceptor} from './authorization.http-interceptor';
 import {routes} from './login-routing';
 import {LoginComponent} from './login.component';
 import {LoginGuard} from './login.guard';
@@ -17,18 +17,16 @@ import {LoginService} from './login.service';
   ],
   imports: [
     CommonModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
     // lib
     MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule,
     // app
     RouterModule.forChild(routes),
   ],
-  exports: [
-    RouterModule
-  ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true},
-    LoginService, LoginGuard
+    {provide: HTTP_INTERCEPTORS, useClass: AuthorizationHttpInterceptor, multi: true},
+    LoginService,
+    LoginGuard
   ]
 })
 export class LoginModule {

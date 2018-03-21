@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatChipsModule,
@@ -26,22 +26,21 @@ import {ArticleService} from './article.service';
 
 @NgModule({
   declarations: [
-    ArticleComponent, ArticleListComponent, ArticleShowComponent, ArticleEditComponent, ArticleCreateComponent, ArticleUpdateComponent, PreviewDialogComponent, ArticleContentsComponent,
+    ArticleComponent,
+    ArticleContentsComponent, ArticleEditComponent, PreviewDialogComponent,
+    ArticleListComponent, ArticleShowComponent, ArticleCreateComponent, ArticleUpdateComponent,
   ],
   entryComponents: [
     PreviewDialogComponent
   ],
   imports: [
     CommonModule,
-    FormsModule, ReactiveFormsModule,
+    FormsModule,
     // lib
     MatButtonModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule, MatTableModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
     ConfirmDialogModule,
-  ],
-  exports: [
-    RouterModule
   ],
   providers: [
     ArticleService
