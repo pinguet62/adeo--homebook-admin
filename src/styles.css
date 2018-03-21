@@ -2,10 +2,26 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
+/* Full screen */
+
 html, body {
   height: 100%;
 }
 
 body {
   margin: 0;
+}
+
+/* Color */
+
+.mat-icon.mat-app-info {
+  color: green;
+}
+
+.mat-icon.mat-app-warning {
+  color: orange;
+}
+
+.mat-icon.mat-app-error {
+  color: red;
 }

@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 
 import {routes} from './app-routing';
 import {AppComponent} from './app.component';
+import {AlertModule, GlobalErrorModule} from './common';
 import {IndexComponent} from './index.component';
 import {EmptyComponent} from './layout/empty.component';
 import {RouterOutletComponent} from './layout/router-outlet.component';
@@ -25,9 +26,10 @@ import {LoginModule} from './login';
     MatButtonModule, MatDividerModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule,
     // app
     RouterModule.forRoot(routes),
+    AlertModule,
+    GlobalErrorModule,
     LoginModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {
