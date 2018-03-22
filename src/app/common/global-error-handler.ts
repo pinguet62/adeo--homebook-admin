@@ -1,4 +1,5 @@
 import {CommonModule} from '@angular/common';
+import {HttpErrorResponse} from '@angular/common/http';
 import {ErrorHandler, Injectable, Injector, NgModule} from '@angular/core';
 
 import {AlertLevel, AlertModule, AlertService} from './alert';
@@ -15,7 +16,14 @@ export class GlobalErrorHandler implements ErrorHandler {
     console.error('[CommonErrorHandler]', error);
     // global user logging
     const alertService = this.injector.get(AlertService);
-    alertService.show(error.message, 'error' as AlertLevel);
+    alertService.show(this.getMessage(error), 'error' as AlertLevel);
+  }
+
+  private getMessage(error: Error): string {
+    if (error instanceof HttpErrorResponse) {
+      return error.error.errors;
+    }
+    return error.message;
   }
 
 }

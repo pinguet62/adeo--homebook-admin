@@ -24,7 +24,7 @@ export class ArticleCreateComponent {
   }
 
   onCreated(article: IArticle) {
-    this.articleService.update(article).subscribe((a) => {
+    this.articleService.create(article).subscribe((a) => {
       this.article = a;
       this.router.navigate(['../'], {relativeTo: this.route}); // list
     });
