@@ -23,27 +23,14 @@ export class PreviewDialogComponent {
   selector: 'app-edit-article',
   template: `
     <form *ngIf="article" #articleForm="ngForm" class="article">
+      <mat-checkbox [(ngModel)]="article.published" #publishedModel="ngModel" name="published">Published?</mat-checkbox>
+
       <mat-form-field>
         <input
           [(ngModel)]="article.title" #titleModel="ngModel" name="title"
           required
           placeholder="Title"
           matInput>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input
-          [(ngModel)]="article.summary" #summaryModel="ngModel" name="summary"
-          placeholder="Summary"
-          matInput>
-      </mat-form-field>
-
-      <mat-form-field>
-        <textarea
-          [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"
-          placeholder="Contents"
-          matInput rows="10"></textarea>
-        <mat-icon (click)="showPreview()" matSuffix>visibility</mat-icon>
       </mat-form-field>
 
       <mat-form-field>
@@ -66,6 +53,21 @@ export class PreviewDialogComponent {
           <mat-option>-</mat-option>
           <mat-option *ngFor="let id of ['leroymerlin-fr', 'kbane-fr', 'boulanger-fr']" [value]="id">{{id}}</mat-option>
         </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          [(ngModel)]="article.summary" #summaryModel="ngModel" name="summary"
+          placeholder="Summary"
+          matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea
+          [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"
+          placeholder="Contents"
+          matInput rows="10"></textarea>
+        <mat-icon (click)="showPreview()" matSuffix>visibility</mat-icon>
       </mat-form-field>
 
       <button
