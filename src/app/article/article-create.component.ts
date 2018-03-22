@@ -20,6 +20,7 @@ export class ArticleCreateComponent {
     this.article = ({
       content: '',
       tags: [],
+      cover: {},
     } as any) as IArticle;
   }
 
