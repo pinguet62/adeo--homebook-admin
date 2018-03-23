@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('homebook-article App', () => {
+describe('homebook-admin App', () => {
   let page: AppPage;
 
   beforeEach(() => {
