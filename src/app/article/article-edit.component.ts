@@ -14,7 +14,7 @@ type DialogDataType = IArticle;
 })
 export class PreviewDialogComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: DialogDataType) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogDataType) {
   }
 
 }

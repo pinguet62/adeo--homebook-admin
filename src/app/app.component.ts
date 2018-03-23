@@ -48,7 +48,7 @@ import {Title} from '@angular/platform-browser';
 })
 export class AppComponent {
 
-  constructor(private titleService: Title) {
+  constructor(public titleService: Title) {
   }
 
 }

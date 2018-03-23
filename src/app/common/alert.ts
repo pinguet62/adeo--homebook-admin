@@ -19,8 +19,8 @@ interface AlertData {
     {{data.message}}
   `
 })
-class AlertComponent {
-  constructor(@Inject(MAT_SNACK_BAR_DATA) private data: AlertData) {
+export class AlertComponent {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: AlertData) {
   }
 }
 

@@ -11,19 +11,26 @@ export class GlobalErrorHandler implements ErrorHandler {
   constructor(private injector: Injector) {
   }
 
+  static getMessage(error: Error): string {
+    if (error instanceof HttpErrorResponse) {
+      const e = error.error;
+
+      // Homebook wrapped response
+      if (typeof e === 'object' && ['status', 'data', 'errors'].every((field) => field in e)) {
+        return e.errors;
+      }
+
+      return e;
+    }
+    return error.message;
+  }
+
   handleError(error: Error): void {
     // default logging
     console.error('[CommonErrorHandler]', error);
     // global user logging
     const alertService = this.injector.get(AlertService);
-    alertService.show(this.getMessage(error), 'error' as AlertLevel);
-  }
-
-  private getMessage(error: Error): string {
-    if (error instanceof HttpErrorResponse) {
-      return error.error.errors;
-    }
-    return error.message;
+    alertService.show(GlobalErrorHandler.getMessage(error), 'error' as AlertLevel);
   }
 
 }

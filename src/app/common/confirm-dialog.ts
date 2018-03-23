@@ -15,7 +15,7 @@ type ConfirmDialogData = () => any;
 })
 export class ConfirmDialogComponent {
 
-  constructor(@Inject(MAT_DIALOG_DATA) private data: ConfirmDialogData) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData) {
   }
 
 }
