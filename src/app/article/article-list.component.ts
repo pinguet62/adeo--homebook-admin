@@ -5,56 +5,62 @@ import {ArticleService, IArticle} from './article.service';
 
 @Component({
   template: `
-    <mat-form-field>
-      <input [(ngModel)]="search" (keyup)="refresh()" placeholder="Search..." matInput>
-    </mat-form-field>
+    <div fxLayout="column">
+      <!-- TODO Scroll Shrink -->
+      <mat-form-field floatLabel="never" style="padding: 0px 16px;">
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          [(ngModel)]="search"
+          (keyup)="refresh()" (keydown.escape)="cleanSearch()"
+          placeholder="Search..." matInput>
+        <button mat-button *ngIf="search" (click)="cleanSearch()" aria-label="Clear" matSuffix mat-icon-button>
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
 
-    <mat-table [dataSource]="articles">
-      <ng-container matColumnDef="_id">
-        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-        <mat-cell *matCellDef="let article">{{article._id}}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-        <mat-cell *matCellDef="let article">{{article.title}}</mat-cell>
-      </ng-container>
-
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let article">
-          <button [routerLink]="['show', article._id]" mat-icon-button>
-            <mat-icon>visibility</mat-icon>
+      <mat-list ngClass.gt-sm="mat-elevation-z8" ngStyle.lt-md="margin-bottom: 80px;">
+        <mat-list-item *ngFor="let article of articles">
+          <!-- icon -->
+          <img matListAvatar [src]="article.cover.thumbnails.small || article.cover.path">
+          <!-- text -->
+          <p mat-line [routerLink]="['show', article._id]" class="mat-card-title">{{article.title}}</p>
+          <p mat-line [routerLink]="['show', article._id]" class="mat-card-subtitle">{{article.summary}}</p>
+          <!-- actions -->
+          <button mat-icon-button [matMenuTriggerFor]="articleActionMenu">
+            <mat-icon>more_vert</mat-icon>
           </button>
-          <button [routerLink]="['edit', article._id]" mat-icon-button>
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button (confirmedClick)="deleteArticle(article)" mat-icon-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-        </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let article; columns: displayedColumns;">
-      </mat-row>
-    </mat-table>
+          <mat-menu #articleActionMenu="matMenu">
+            <button mat-menu-item [routerLink]="['show', article._id]">
+              <mat-icon>visibility</mat-icon>
+              <span>Preview</span>
+            </button>
+            <button mat-menu-item [routerLink]="['edit', article._id]">
+              <mat-icon>edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item (confirmedClick)="deleteArticle(article)">
+              <mat-icon>delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </mat-list-item>
+      </mat-list>
+    </div>
 
     <button mat-fab color="warn" class="floating" routerLink="./create">
       <mat-icon>add</mat-icon>
     </button>
   `,
   styles: [`
+    /* floating button */
     .floating {
       position: fixed;
-      right: 40px;
-      bottom: 40px;
+      right: 20px;
+      bottom: 20px;
     }
   `]
 })
 export class ArticleListComponent {
-
-  readonly displayedColumns = ['_id', 'title', 'actions'];
 
   search: string;
 
@@ -64,6 +70,11 @@ export class ArticleListComponent {
     private router: Router,
     private articleService: ArticleService
   ) {
+    this.refresh();
+  }
+
+  public cleanSearch() {
+    this.search = '';
     this.refresh();
   }
 

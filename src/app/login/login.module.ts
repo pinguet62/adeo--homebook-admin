@@ -1,6 +1,7 @@
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
@@ -20,6 +21,7 @@ import {LoginService} from './login.service';
     FormsModule,
     // lib
     MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule,
+    FlexLayoutModule,
     // app
     RouterModule.forChild(routes),
   ],

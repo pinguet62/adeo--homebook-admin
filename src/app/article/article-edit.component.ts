@@ -22,76 +22,85 @@ export class PreviewDialogComponent {
 @Component({
   selector: 'app-edit-article',
   template: `
-    <form *ngIf="article" #articleForm="ngForm" class="article">
-      <mat-checkbox [(ngModel)]="article.published" #publishedModel="ngModel" name="published">Published?</mat-checkbox>
+    <form *ngIf="article" #articleForm="ngForm">
+      <div fxLayout="column" class="article-edit mat-elevation-z8">
+        <mat-checkbox [(ngModel)]="article.published" #publishedModel="ngModel" name="published">
+          Published?
+        </mat-checkbox>
 
-      <mat-form-field>
-        <input
-          [(ngModel)]="article.title" #titleModel="ngModel" name="title"
-          required
-          placeholder="Title"
-          matInput>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-chip-list #tagsChipList>
-          <mat-chip
-            *ngFor="let tag of article.tags"
-            [removable]="true" (removed)="removeTag(tag)">
-            {{tag}}
-            <mat-icon matChipRemove>cancel</mat-icon>
-          </mat-chip>
+        <mat-form-field>
           <input
-            [matChipInputFor]="tagsChipList"
-            (matChipInputTokenEnd)="addTag($event)"
-            placeholder="Tags">
-        </mat-chip-list>
-      </mat-form-field>
+            [(ngModel)]="article.title" #titleModel="ngModel" name="title"
+            required
+            placeholder="Title"
+            matInput>
+        </mat-form-field>
 
-      <mat-form-field>
-        <mat-select [(value)]="article.partnerId" placeholder="Partner">
-          <mat-option>-</mat-option>
-          <mat-option *ngFor="let id of ['leroymerlin-fr', 'kbane-fr', 'boulanger-fr']" [value]="id">{{id}}</mat-option>
-        </mat-select>
-      </mat-form-field>
+        <mat-form-field>
+          <mat-chip-list #tagsChipList>
+            <mat-chip
+              *ngFor="let tag of article.tags"
+              [removable]="true" (removed)="removeTag(tag)">
+              {{tag}}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+            <input
+              [matChipInputFor]="tagsChipList"
+              (matChipInputTokenEnd)="addTag($event)"
+              placeholder="Tags">
+          </mat-chip-list>
+        </mat-form-field>
 
-      <!-- TODO separate form -->
-      <mat-form-field>
+        <mat-form-field>
+          <mat-select [(value)]="article.partnerId" placeholder="Partner">
+            <mat-option>-</mat-option>
+            <mat-option *ngFor="let id of ['leroymerlin-fr', 'kbane-fr', 'boulanger-fr']" [value]="id">{{id}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- TODO separate form -->
+        <mat-form-field>
         <textarea
           [ngModel]="article.cover | json" (ngModelChange)="setCover($event)" #coverModel="ngModel" name="cover"
           required
           placeholder="Cover"
           matInput rows="5"></textarea>
-      </mat-form-field>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input
-          [(ngModel)]="article.summary" #summaryModel="ngModel" name="summary"
-          placeholder="Summary"
-          matInput>
-      </mat-form-field>
+        <mat-form-field>
+          <input
+            [(ngModel)]="article.summary" #summaryModel="ngModel" name="summary"
+            placeholder="Summary"
+            matInput>
+        </mat-form-field>
 
-      <mat-form-field>
+        <mat-form-field>
       <textarea
         [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"
         placeholder="Contents"
         matInput rows="10"></textarea>
-        <mat-icon (click)="showPreview()" matSuffix>visibility</mat-icon>
-      </mat-form-field>
+          <mat-icon (click)="showPreview()" matSuffix>visibility</mat-icon>
+        </mat-form-field>
+      </div>
 
       <button
         type="submit"
         [disabled]="!articleForm.form.valid"
         (click)="edited.emit(article)"
-        mat-raised-button color="primary">
+        mat-raised-button color="primary" class="article-edit-submit">
         Save
       </button>
     </form>
   `,
   styles: [`
-    .article {
-      display: flex;
-      flex-direction: column;
+    .article-edit {
+      padding: 24px;
+    }
+
+    .article-edit-submit {
+      margin-top: 24px;
+      width: 100%;
     }
   `]
 })

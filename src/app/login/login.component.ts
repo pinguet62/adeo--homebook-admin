@@ -9,7 +9,7 @@ import {LoginService} from './login.service';
   template: `
     <form #loginForm="ngForm" (ngSubmit)="onLogin()">
       <mat-card class="login-card">
-        <mat-card-content class="login-fields">
+        <mat-card-content fxLayout="column">
           <mat-form-field>
             <input
               [(ngModel)]="email" #emailModel="ngModel" name="email"
@@ -33,7 +33,7 @@ import {LoginService} from './login.service';
           <button
             type="submit"
             [disabled]="!loginForm.form.valid"
-            mat-raised-button color="primary">
+            mat-raised-button color="primary" style="width: 100%;">
             Login
           </button>
         </mat-card-actions>
@@ -41,23 +41,10 @@ import {LoginService} from './login.service';
     </form>
   `,
   styles: [`
-    /* center */
-    :host {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  `, `
     .login-card {
       max-width: 300px;
       margin-left: auto;
       margin-right: auto;
-    }
-
-    .login-fields {
-      display: flex;
-      flex-direction: column;
     }
   `]
 })

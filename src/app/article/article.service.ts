@@ -41,8 +41,7 @@ export class ArticleService {
   constructor(private http: HttpClient) {
   }
 
-  list(search?: string): Observable<IArticle[]> {
-    search = search || ''
+  list(search: string = ''): Observable<IArticle[]> {
     return this.http
       .get<HomebookResult<IArticle[]>>(environment.apiUrl + `/package-management/article?search=${search}`)
       .map((it) => it.data);

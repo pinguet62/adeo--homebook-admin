@@ -1,5 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule,
@@ -8,8 +9,9 @@ import {
   MatDialogModule,
   MatIconModule,
   MatInputModule,
+  MatListModule,
+  MatMenuModule,
   MatSelectModule,
-  MatTableModule,
   MatTooltipModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
@@ -38,7 +40,8 @@ import {ArticleService} from './article.service';
     CommonModule,
     FormsModule,
     // lib
-    MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatSelectModule, MatTableModule, MatTooltipModule,
+    FlexLayoutModule,
+    MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
     ConfirmDialogModule,
