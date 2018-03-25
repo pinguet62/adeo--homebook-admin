@@ -29,7 +29,7 @@ import {ArticleService, IArticle} from './article.service';
           <button [routerLink]="['edit', article._id]" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
-          <button [appConfirmDialog]="deleteArticleFct(article)" mat-icon-button>
+          <button (confirmedClick)="deleteArticle(article)" mat-icon-button>
             <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>
@@ -76,12 +76,10 @@ export class ArticleListComponent {
   /**
    * @returns Returns function in order to be executed by {@link ConfirmDialog}.
    */
-  deleteArticleFct(article: IArticle): () => void {
-    return () => {
-      this.articleService.delete(article).subscribe(() =>
-        this.refresh()
-      );
-    };
+  deleteArticle(article: IArticle) {
+    this.articleService.delete(article).subscribe(() =>
+      this.refresh()
+    );
   }
 
 }

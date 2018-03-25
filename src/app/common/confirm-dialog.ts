@@ -1,38 +1,37 @@
 import {CommonModule} from '@angular/common';
-import {Component, Directive, HostListener, Inject, Input, NgModule} from '@angular/core';
-import {MAT_DIALOG_DATA, MatButtonModule, MatDialog, MatDialogModule} from '@angular/material';
-
-type ConfirmDialogData = () => any;
+import {Component, Directive, EventEmitter, HostListener, NgModule, Output} from '@angular/core';
+import {MatButtonModule, MatDialog, MatDialogModule, MatDialogRef} from '@angular/material';
 
 @Component({
   template: `
     <mat-dialog-content>Are you sure?</mat-dialog-content>
     <mat-dialog-actions>
-      <button matDialogClose (click)="data()" mat-raised-button color="primary">Yes</button>
-      <button matDialogClose mat-raised-button color="warn">No</button>
+      <button matDialogClose [matDialogClose]="true" mat-raised-button color="primary">Yes</button>
+      <button matDialogClose [matDialogClose]="false" mat-raised-button color="warn">No</button>
     </mat-dialog-actions>
   `
 })
 export class ConfirmDialogComponent {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData) {
-  }
-
 }
 
 @Directive({
-  selector: '[appConfirmDialog]'
+  selector: '[confirmedClick]'
 })
 export class ConfirmDialogDirective {
 
-  @Input('appConfirmDialog') callback: () => any;
+  @Output('confirmedClick') confirmedClick: EventEmitter<MouseEvent> = new EventEmitter<MouseEvent>();
 
   constructor(private dialogService: MatDialog) {
   }
 
-  @HostListener('click')
-  click() {
-    this.dialogService.open<ConfirmDialogComponent, ConfirmDialogData>(ConfirmDialogComponent, {data: this.callback});
+  @HostListener('click', ['$event'])
+  click(event: MouseEvent) {
+    const dialogRef: MatDialogRef<ConfirmDialogComponent, boolean> = this.dialogService.open(ConfirmDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.confirmedClick.emit(event);
+      }
+    });
   }
 
 }
