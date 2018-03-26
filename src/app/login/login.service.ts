@@ -28,12 +28,15 @@ export class LoginService {
         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       })
       .map((it) => it.data)
-      .do((token) => this.processLogin(token));
+      .do((token) => {
+        this.jwtToken = token;
+        window.localStorage.setItem(LOCALSTORAGE_JWTTOKEN_KEY, this.jwtToken);
+      });
   }
 
-  private processLogin(token: string) {
-    this.jwtToken = token;
-    window.localStorage.setItem(LOCALSTORAGE_JWTTOKEN_KEY, this.jwtToken);
+  public logout() {
+    window.localStorage.removeItem(LOCALSTORAGE_JWTTOKEN_KEY);
+    this.jwtToken = null;
   }
 
 }

@@ -2,6 +2,8 @@ import {Component} from '@angular/core';
 import {ObservableMedia} from '@angular/flex-layout';
 import {Title} from '@angular/platform-browser';
 
+import {LoginService} from './login';
+
 @Component({
   selector: 'app-root',
   template: `
@@ -18,11 +20,14 @@ import {Title} from '@angular/platform-browser';
 
       <span style="flex: 1 1 auto;"></span>
 
-      <button mat-icon-button>
       <button [matMenuTriggerFor]="appMenu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #appMenu="matMenu">
+        <button (click)="loginService.logout()" [routerLink]="['/']" mat-menu-item>
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Logout</span>
+        </button>
       </mat-menu>
     </mat-toolbar>
 
@@ -58,7 +63,8 @@ export class AppComponent {
 
   constructor(
     public titleService: Title,
-    public media: ObservableMedia
+    public media: ObservableMedia,
+    public loginService: LoginService
   ) {
   }
 
