@@ -28,14 +28,6 @@ import {ArticleComponent} from './article.component';
 import {ArticleService} from './article.service';
 
 @NgModule({
-  declarations: [
-    ArticleComponent,
-    ArticleContentsComponent, ArticleEditComponent, PreviewDialogComponent,
-    ArticleListComponent, ArticleShowComponent, ArticleCreateComponent, ArticleUpdateComponent,
-  ],
-  entryComponents: [
-    PreviewDialogComponent
-  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -45,6 +37,14 @@ import {ArticleService} from './article.service';
     // app
     RouterModule.forChild(routes),
     ConfirmDialogModule,
+  ],
+  declarations: [
+    ArticleComponent,
+    ArticleContentsComponent, ArticleEditComponent, PreviewDialogComponent,
+    ArticleListComponent, ArticleShowComponent, ArticleCreateComponent, ArticleUpdateComponent,
+  ],
+  entryComponents: [
+    PreviewDialogComponent
   ],
   providers: [
     ArticleService

@@ -37,15 +37,14 @@ export class ConfirmDialogDirective {
 }
 
 @NgModule({
-  declarations: [ConfirmDialogComponent, ConfirmDialogDirective],
-  entryComponents: [ConfirmDialogComponent],
   imports: [
     CommonModule,
     // lib
     MatButtonModule, MatDialogModule,
   ],
-  exports: [ConfirmDialogComponent, ConfirmDialogDirective],
-  providers: []
+  declarations: [ConfirmDialogComponent, ConfirmDialogDirective],
+  entryComponents: [ConfirmDialogComponent],
+  exports: [ConfirmDialogComponent, ConfirmDialogDirective]
 })
 export class ConfirmDialogModule {
 }

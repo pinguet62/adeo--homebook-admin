@@ -13,9 +13,6 @@ import {LoginGuard} from './login.guard';
 import {LoginService} from './login.service';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,6 +21,9 @@ import {LoginService} from './login.service';
     FlexLayoutModule,
     // app
     RouterModule.forChild(routes),
+  ],
+  declarations: [
+    LoginComponent,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizationHttpInterceptor, multi: true},

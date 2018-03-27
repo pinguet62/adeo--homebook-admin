@@ -41,14 +41,13 @@ export class AlertService {
 }
 
 @NgModule({
-  declarations: [AlertComponent],
-  entryComponents: [AlertComponent],
   imports: [
     CommonModule,
     // lib
     MatIconModule, MatSnackBarModule,
   ],
-  exports: [],
+  declarations: [AlertComponent],
+  entryComponents: [AlertComponent],
   providers: [AlertService]
 })
 export class AlertModule {

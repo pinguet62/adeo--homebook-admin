@@ -23,10 +23,6 @@ import {RouterOutletComponent} from './layout/router-outlet.component';
 import {LoginModule} from './login';
 
 @NgModule({
-  declarations: [
-    EmptyComponent, RouterOutletComponent,
-    AppComponent, IndexComponent,
-  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -39,6 +35,10 @@ import {LoginModule} from './login';
     AlertModule,
     GlobalErrorModule,
     LoginModule,
+  ],
+  declarations: [
+    EmptyComponent, RouterOutletComponent,
+    AppComponent, IndexComponent,
   ],
   bootstrap: [AppComponent],
 })
