@@ -42,6 +42,10 @@ import {LoginService} from './login';
             <mat-icon mat-list-icon>find_in_page</mat-icon>
             <span mat-line>Articles</span>
           </mat-list-item>
+          <mat-list-item [routerLink]="['/user']">
+            <mat-icon mat-list-icon>person</mat-icon>
+            <span mat-line>Users</span>
+          </mat-list-item>
         </mat-nav-list>
       </mat-sidenav>
 

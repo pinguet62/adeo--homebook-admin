@@ -5,6 +5,7 @@ import {Title} from '@angular/platform-browser';
   template: `
     <div>
       <button routerLink="/article" mat-raised-button>Articles</button>
+      <button routerLink="/user" mat-raised-button>Users</button>
     </div>
   `
 })

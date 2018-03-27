@@ -11,4 +11,9 @@ export const routes: Routes = [
       {path: '', loadChildren: 'app/article/article.module#ArticleModule'},
     ]
   },
+  {
+    path: 'user', component: RouterOutletComponent, canActivate: [LoginGuard], children: [
+      {path: '', loadChildren: 'app/user/user.module#UserModule'},
+    ]
+  },
 ];
