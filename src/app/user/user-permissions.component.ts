@@ -19,7 +19,7 @@ import {IUser, UserService} from './user.service';
               <input
                 [(ngModel)]="userId" name="userId"
                 (change)="user = null"
-                required
+                required objectId
                 placeholder="User ID" matInput>
             </mat-form-field>
             <button type="submit" mat-raised-button>

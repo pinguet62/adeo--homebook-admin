@@ -17,17 +17,13 @@ import {
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
 
-import {AlertModule} from '../common';
+import {AlertModule, ValidatorsModule} from '../common';
 import {UserPermissionsComponent} from './user-permissions.component';
 import {routes} from './user-routing';
 import {UserComponent} from './user.component';
 import {UserService} from './user.service';
 
 @NgModule({
-  declarations: [
-    UserComponent,
-    UserPermissionsComponent,
-  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -36,7 +32,11 @@ import {UserService} from './user.service';
     MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
-    AlertModule,
+    AlertModule, ValidatorsModule,
+  ],
+  declarations: [
+    UserComponent,
+    UserPermissionsComponent,
   ],
   providers: [
     UserService
