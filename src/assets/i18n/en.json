@@ -1,0 +1,51 @@
+{
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "search": "Search",
+    "save": "Save",
+    "confirm": {
+      "common.confirm.title": "Are you sure?"
+    }
+  },
+  "login": {
+    "title": "Login",
+    "form": {
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "Login"
+    }
+  },
+  "article": {
+    "title": "Article",
+    "list": {
+      "action": {
+        "show": "Show",
+        "edit": "Edit",
+        "delete": "Delete"
+      }
+    },
+    "form": {
+      "published": "Published?",
+      "title": "Title",
+      "tags": "Tags",
+      "partner": "Partner",
+      "cover": "Cover",
+      "summary": "Summary",
+      "contents": "Content"
+    }
+  },
+  "user": {
+    "title": "User",
+    "permissions": {
+      "searchStep": {
+        "title": "User",
+        "placeholder": "User's ID"
+      },
+      "editStep": {
+        "title": "Permissions",
+        "value": "Codes"
+      }
+    }
+  }
+}

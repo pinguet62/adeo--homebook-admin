@@ -5,6 +5,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {TranslateModule} from '@ngx-translate/core';
 
 import {AuthorizationHttpInterceptor} from './authorization.http-interceptor';
 import {routes} from './login-routing';
@@ -17,6 +18,7 @@ import {LoginService} from './login.service';
     CommonModule,
     FormsModule,
     // lib
+    TranslateModule.forChild(),
     MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule,
     FlexLayoutModule,
     // app

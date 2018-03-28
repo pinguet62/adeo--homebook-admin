@@ -15,6 +15,7 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {TranslateModule} from '@ngx-translate/core';
 
 import {ConfirmDialogModule} from '../common';
 import {ArticleContentsComponent} from './article-contents.component';
@@ -32,6 +33,7 @@ import {ArticleService} from './article.service';
     CommonModule,
     FormsModule,
     // lib
+    TranslateModule.forChild(),
     FlexLayoutModule,
     MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatTooltipModule,
     // app

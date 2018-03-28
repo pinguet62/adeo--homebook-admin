@@ -6,7 +6,7 @@ describe('common/global-error-handler', () => {
   describe(`${GlobalErrorHandler.getMessage.name}`, () => {
     describe(`For type ${HttpErrorResponse.name}`, () => {
       it('Wrapped Homebook response: should return sub-field "errors"', () => {
-        const homebookResponse = {status: 'any', data: 'any', errors: 'expected'}
+        const homebookResponse = {status: 'any', data: 'any', errors: 'expected'};
         const error = new HttpErrorResponse({error: homebookResponse});
 
         const message = GlobalErrorHandler.getMessage(error);

@@ -1,13 +1,18 @@
 import {CommonModule} from '@angular/common';
 import {Component, Directive, EventEmitter, HostListener, NgModule, Output} from '@angular/core';
 import {MatButtonModule, MatDialog, MatDialogModule, MatDialogRef} from '@angular/material';
+import {TranslateModule} from '@ngx-translate/core';
 
 @Component({
   template: `
-    <mat-dialog-content>Are you sure?</mat-dialog-content>
+    <mat-dialog-content>{{'common.confirm.title' | translate}}</mat-dialog-content>
     <mat-dialog-actions>
-      <button matDialogClose [matDialogClose]="true" mat-raised-button color="primary">Yes</button>
-      <button matDialogClose [matDialogClose]="false" mat-raised-button color="warn">No</button>
+      <button matDialogClose [matDialogClose]="true" mat-raised-button color="primary">
+        {{'common.yes' | translate}}
+      </button>
+      <button matDialogClose [matDialogClose]="false" mat-raised-button color="warn">
+        {{'common.no' | translate}}
+      </button>
     </mat-dialog-actions>
   `
 })
@@ -40,6 +45,7 @@ export class ConfirmDialogDirective {
   imports: [
     CommonModule,
     // lib
+    TranslateModule.forChild(),
     MatButtonModule, MatDialogModule,
   ],
   declarations: [ConfirmDialogComponent, ConfirmDialogDirective],

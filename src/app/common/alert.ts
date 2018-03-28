@@ -31,7 +31,7 @@ export class AlertService {
   }
 
   public show(message: string, level: AlertLevel) {
-    const data: AlertData = {level, message}
+    const data: AlertData = {level, message};
     this.snackBar.openFromComponent(AlertComponent, {
       data,
       duration: 1000

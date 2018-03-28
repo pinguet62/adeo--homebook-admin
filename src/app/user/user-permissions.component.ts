@@ -13,23 +13,23 @@ import {IUser, UserService} from './user.service';
   template: `
     <div class="mat-elevation-z8">
       <mat-vertical-stepper #stepper linear>
-        <mat-step [completed]="user !== null" label="User">
+        <mat-step [completed]="user !== null" [label]="'user.permissions.searchStep.title' | translate">
           <form (submit)="searchUser()" #userIdForm="ngForm">
             <mat-form-field style="padding: 0px 16px;">
               <input
                 [(ngModel)]="userId" name="userId"
                 (change)="user = null"
                 required objectId
-                placeholder="User ID" matInput>
+                [placeholder]="'user.permissions.searchStep.placeholder' | translate" matInput>
             </mat-form-field>
             <button type="submit" mat-raised-button>
-              <span>Search</span>
+              <span>{{'common.search' | translate}}</span>
               <mat-icon>search</mat-icon>
             </button>
           </form>
         </mat-step>
 
-        <mat-step label="Permissions">
+        <mat-step [label]="'user.permissions.editStep.title' | translate">
           <form *ngIf="user" (submit)="savePermissions()">
             <mat-form-field>
               <mat-chip-list #permissionsChipList>
@@ -42,11 +42,11 @@ import {IUser, UserService} from './user.service';
                 <input
                   [matChipInputFor]="permissionsChipList"
                   (matChipInputTokenEnd)="addPermission($event)"
-                  placeholder="permissions">
+                  [placeholder]="'user.permissions.editStep.value' | translate">
               </mat-chip-list>
             </mat-form-field>
 
-            <button type="submit" mat-raised-button color="primary">Save</button>
+            <button type="submit" mat-raised-button color="primary">{{'common.save' | translate}}</button>
           </form>
         </mat-step>
       </mat-vertical-stepper>

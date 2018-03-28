@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
 
 import {ORIGINAL_URL} from './constants';
 import {LoginService} from './login.service';
@@ -15,7 +16,7 @@ import {LoginService} from './login.service';
               [(ngModel)]="email" #emailModel="ngModel" name="email"
               type="email"
               required email
-              placeholder="Email"
+              [placeholder]="'login.form.email' | translate"
               matInput>
           </mat-form-field>
 
@@ -24,7 +25,7 @@ import {LoginService} from './login.service';
               [(ngModel)]="password" #passwordModel="ngModel" name="password"
               type="password"
               required
-              placeholder="Password"
+              [placeholder]="'login.form.password' | translate"
               matInput>
           </mat-form-field>
         </mat-card-content>
@@ -34,7 +35,7 @@ import {LoginService} from './login.service';
             type="submit"
             [disabled]="!loginForm.form.valid"
             mat-raised-button color="primary" style="width: 100%;">
-            Login
+            {{'login.form.submit' | translate}}
           </button>
         </mat-card-actions>
       </mat-card>
@@ -58,9 +59,12 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     titleService: Title,
+    translateService: TranslateService,
     private loginService: LoginService
   ) {
-    titleService.setTitle('Login');
+    translateService.get('login.title').subscribe(x =>
+      titleService.setTitle(x)
+    );
   }
 
   ngOnInit(): void {

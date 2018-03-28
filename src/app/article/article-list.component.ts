@@ -12,7 +12,7 @@ import {ArticleService, IArticle} from './article.service';
         <input
           [(ngModel)]="search"
           (keyup)="refresh()" (keydown.escape)="cleanSearch()"
-          placeholder="Search..." matInput>
+          [placeholder]="('common.search' | translate) + '...'" matInput>
         <button mat-button *ngIf="search" (click)="cleanSearch()" aria-label="Clear" matSuffix mat-icon-button>
           <mat-icon>close</mat-icon>
         </button>
@@ -32,15 +32,15 @@ import {ArticleService, IArticle} from './article.service';
           <mat-menu #articleActionMenu="matMenu">
             <button mat-menu-item [routerLink]="['show', article._id]">
               <mat-icon>visibility</mat-icon>
-              <span>Preview</span>
+              <span>{{'article.list.action.show' | translate}}</span>
             </button>
             <button mat-menu-item [routerLink]="['edit', article._id]">
               <mat-icon>edit</mat-icon>
-              <span>Edit</span>
+              <span>{{'article.list.action.edit' | translate}}</span>
             </button>
             <button mat-menu-item (confirmedClick)="deleteArticle(article)">
               <mat-icon>delete</mat-icon>
-              <span>Delete</span>
+              <span>{{'article.list.action.delete' | translate}}</span>
             </button>
           </mat-menu>
         </mat-list-item>

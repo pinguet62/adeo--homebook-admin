@@ -16,6 +16,7 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {TranslateModule} from '@ngx-translate/core';
 
 import {AlertModule, ValidatorsModule} from '../common';
 import {UserPermissionsComponent} from './user-permissions.component';
@@ -28,6 +29,7 @@ import {UserService} from './user.service';
     CommonModule,
     FormsModule,
     // lib
+    TranslateModule.forChild(),
     FlexLayoutModule,
     MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
     // app

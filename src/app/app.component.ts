@@ -16,7 +16,7 @@ import {LoginService} from './login';
         <a routerLink="/">Homebook admin</a>
       </span>
       <mat-divider [vertical]="true"></mat-divider>
-      <span>{{titleService.getTitle()}}</span>
+      <span>{{titleService.getTitle() | translate}}</span>
 
       <span style="flex: 1 1 auto;"></span>
 
@@ -40,11 +40,11 @@ import {LoginService} from './login';
         <mat-nav-list>
           <mat-list-item [routerLink]="['/article']">
             <mat-icon mat-list-icon>find_in_page</mat-icon>
-            <span mat-line>Articles</span>
+            <span mat-line>{{'article.title' | translate}}</span>
           </mat-list-item>
           <mat-list-item [routerLink]="['/user']">
             <mat-icon mat-list-icon>person</mat-icon>
-            <span mat-line>Users</span>
+            <span mat-line>{{'user.title' | translate}}</span>
           </mat-list-item>
         </mat-nav-list>
       </mat-sidenav>

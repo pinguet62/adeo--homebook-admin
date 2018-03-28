@@ -25,14 +25,14 @@ export class PreviewDialogComponent {
     <form *ngIf="article" #articleForm="ngForm">
       <div fxLayout="column" class="article-edit mat-elevation-z8">
         <mat-checkbox [(ngModel)]="article.published" #publishedModel="ngModel" name="published">
-          Published?
+          {{'article.form.published' | translate}}
         </mat-checkbox>
 
         <mat-form-field>
           <input
             [(ngModel)]="article.title" #titleModel="ngModel" name="title"
             required
-            placeholder="Title"
+            [placeholder]="'article.form.title' | translate"
             matInput>
         </mat-form-field>
 
@@ -47,12 +47,12 @@ export class PreviewDialogComponent {
             <input
               [matChipInputFor]="tagsChipList"
               (matChipInputTokenEnd)="addTag($event)"
-              placeholder="Tags">
+              [placeholder]="'article.form.tags' | translate">
           </mat-chip-list>
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select [(value)]="article.partnerId" placeholder="Partner">
+          <mat-select [(value)]="article.partnerId" [placeholder]="'article.form.partner' | translate">
             <mat-option>-</mat-option>
             <mat-option *ngFor="let id of ['leroymerlin-fr', 'kbane-fr', 'boulanger-fr']" [value]="id">{{id}}
             </mat-option>
@@ -64,21 +64,21 @@ export class PreviewDialogComponent {
         <textarea
           [ngModel]="article.cover | json" (ngModelChange)="setCover($event)" #coverModel="ngModel" name="cover"
           required
-          placeholder="Cover"
+          [placeholder]="'article.form.cover' | translate"
           matInput rows="5"></textarea>
         </mat-form-field>
 
         <mat-form-field>
           <input
             [(ngModel)]="article.summary" #summaryModel="ngModel" name="summary"
-            placeholder="Summary"
+            [placeholder]="'article.form.summary' | translate"
             matInput>
         </mat-form-field>
 
         <mat-form-field>
       <textarea
         [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"
-        placeholder="Contents"
+        [placeholder]="'article.form.contents' | translate"
         matInput rows="10"></textarea>
           <mat-icon (click)="showPreview()" matSuffix>visibility</mat-icon>
         </mat-form-field>
@@ -89,7 +89,7 @@ export class PreviewDialogComponent {
         [disabled]="!articleForm.form.valid"
         (click)="edited.emit(article)"
         mat-raised-button color="primary" class="article-edit-submit">
-        Save
+        {{'common.save' | translate}}
       </button>
     </form>
   `,
