@@ -13,9 +13,11 @@ import {
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
+import {ServiceWorkerModule} from '@angular/service-worker';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
+import {environment} from '../environments/environment';
 import {routes} from './app-routing';
 import {AppComponent} from './app.component';
 import {AlertModule, GlobalErrorModule, I18nModule} from './common';
@@ -29,6 +31,7 @@ import {LoginModule} from './login';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     // lib
     TranslateModule.forRoot({
       useDefaultLang: true,
