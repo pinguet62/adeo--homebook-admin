@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ObservableMedia} from '@angular/flex-layout';
 import {Title} from '@angular/platform-browser';
 
+import {environment} from '../environments/environment';
 import {LoginService} from './login';
 
 @Component({
@@ -12,13 +13,12 @@ import {LoginService} from './login';
         <mat-icon>menu</mat-icon>
       </button>
 
-      <span>
-        <a routerLink="/">Homebook admin</a>
-      </span>
-      <mat-divider [vertical]="true"></mat-divider>
+      <button routerLink="/" mat-button><h1>Homebook admin</h1></button>
       <span>{{titleService.getTitle() | translate}}</span>
 
       <span style="flex: 1 1 auto;"></span>
+
+      <a [href]="environment.appUrl" target="_blank" mat-button>{{'common.toolbar.app' | translate}}</a>
 
       <button [matMenuTriggerFor]="appMenu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
@@ -64,6 +64,8 @@ import {LoginService} from './login';
   `]
 })
 export class AppComponent {
+
+  public environment: any = environment;
 
   constructor(
     public titleService: Title,

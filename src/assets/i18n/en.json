@@ -6,6 +6,9 @@
     "save": "Save",
     "confirm": {
       "common.confirm.title": "Are you sure?"
+    },
+    "toolbar": {
+      "app": "Application"
     }
   },
   "login": {
