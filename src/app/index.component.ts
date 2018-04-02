@@ -5,12 +5,12 @@ import {Title} from '@angular/platform-browser';
   template: `
     <div class="menus">
       <div class="box" routerLink="/article">
-        <img src="http://www.nerdglaze.com/wp-content/uploads/2013/12/Shelf-of-Books-1024x637.jpg">
+        <img src="/assets/article.jpg">
         <h2>{{'article.title' | translate}}</h2>
       </div>
 
       <div class="box" routerLink="/user">
-        <img src="http://www.cerc.co.uk/software-support/assets/img/CERC_UGM_2010_097.jpg">
+        <img src="/assets/user.jpg">
         <h2>{{'user.title' | translate}}</h2>
       </div>
     </div>
