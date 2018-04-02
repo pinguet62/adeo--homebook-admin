@@ -13,12 +13,12 @@ import {LoginService} from './login';
         <mat-icon>menu</mat-icon>
       </button>
 
-      <button routerLink="/" mat-button><h1>Homebook admin</h1></button>
+      <button routerLink="/" fxShow.lt-md="false" mat-button><h1>Homebook admin</h1></button>
       <span>{{titleService.getTitle() | translate}}</span>
 
       <span style="flex: 1 1 auto;"></span>
 
-      <a [href]="environment.appUrl" target="_blank" mat-button>{{'common.toolbar.app' | translate}}</a>
+      <a [href]="environment.appUrl" target="_blank" fxShow.lt-md="false" mat-button>{{'common.toolbar.app' | translate}}</a>
 
       <button [matMenuTriggerFor]="appMenu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
