@@ -21,12 +21,12 @@ import {ArticleService, IArticle} from './article.service';
       <mat-list ngClass.gt-sm="mat-elevation-z8" ngStyle.lt-md="margin-bottom: 80px;">
         <mat-list-item *ngFor="let article of articles">
           <!-- icon -->
-          <img matListAvatar [src]="article.cover.thumbnails.small || article.cover.path">
+          <img matListAvatar [src]="article.cover.thumbnails.small || article.cover.path" alt="">
           <!-- text -->
           <p mat-line [routerLink]="['show', article._id]" class="mat-card-title">{{article.title}}</p>
           <p mat-line [routerLink]="['show', article._id]" class="mat-card-subtitle">{{article.summary}}</p>
           <!-- actions -->
-          <button mat-icon-button [matMenuTriggerFor]="articleActionMenu">
+          <button [matMenuTriggerFor]="articleActionMenu" aria-label="Actions" mat-icon-button>
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #articleActionMenu="matMenu">

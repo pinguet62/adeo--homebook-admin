@@ -9,7 +9,7 @@ import {LoginService} from './login';
   selector: 'app-root',
   template: `
     <mat-toolbar color="primary">
-      <button (click)="sidenav.toggle()" mat-icon-button>
+      <button (click)="sidenav.toggle()" aria-label="Menu" mat-icon-button>
         <mat-icon>menu</mat-icon>
       </button>
 
@@ -20,7 +20,7 @@ import {LoginService} from './login';
 
       <a [href]="environment.appUrl" target="_blank" rel="noopener" fxShow.lt-md="false" mat-button>{{'common.toolbar.app' | translate}}</a>
 
-      <button [matMenuTriggerFor]="appMenu" mat-icon-button>
+      <button [matMenuTriggerFor]="appMenu" aria-label="Options" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #appMenu="matMenu">
