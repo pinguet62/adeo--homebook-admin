@@ -18,7 +18,7 @@ import {LoginService} from './login';
 
       <span style="flex: 1 1 auto;"></span>
 
-      <a [href]="environment.appUrl" target="_blank" fxShow.lt-md="false" mat-button>{{'common.toolbar.app' | translate}}</a>
+      <a [href]="environment.appUrl" target="_blank" rel="noopener" fxShow.lt-md="false" mat-button>{{'common.toolbar.app' | translate}}</a>
 
       <button [matMenuTriggerFor]="appMenu" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
