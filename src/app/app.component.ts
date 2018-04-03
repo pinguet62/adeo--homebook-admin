@@ -18,7 +18,9 @@ import {LoginService} from './login';
 
       <span style="flex: 1 1 auto;"></span>
 
-      <a [href]="environment.appUrl" target="_blank" rel="noopener" fxShow.lt-md="false" mat-button>{{'common.toolbar.app' | translate}}</a>
+      <a [href]="environment.appUrl" target="_blank" rel="noopener" fxShow.lt-md="false" mat-button>
+        {{'common.toolbar.app' | translate}}
+      </a>
 
       <button [matMenuTriggerFor]="appMenu" aria-label="Options" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
@@ -38,11 +40,16 @@ import {LoginService} from './login';
         [opened]="media.isActive('gt-sm')"
         [fixedInViewport]="!media.isActive('gt-sm')">
         <mat-nav-list>
-          <mat-list-item [routerLink]="['/article']">
+          <mat-list-item routerLink="/" routerLinkActive="menu-selected" [routerLinkActiveOptions]="{exact: true}">
+            <mat-icon mat-list-icon>home</mat-icon>
+            <span mat-line>{{'common.home' | translate}}</span>
+          </mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item routerLink="/article" routerLinkActive="menu-selected">
             <mat-icon mat-list-icon>find_in_page</mat-icon>
             <span mat-line>{{'article.title' | translate}}</span>
           </mat-list-item>
-          <mat-list-item [routerLink]="['/user']">
+          <mat-list-item routerLink="/user" routerLinkActive="menu-selected">
             <mat-icon mat-list-icon>person</mat-icon>
             <span mat-line>{{'user.title' | translate}}</span>
           </mat-list-item>
@@ -57,6 +64,14 @@ import {LoginService} from './login';
     </mat-sidenav-container>
   `,
   styles: [`
+    mat-sidenav mat-list-item span {
+      padding-right: 30px;
+    }
+
+    .menu-selected {
+      color: #3f51b5;
+    }
+  `, `
     .content-web {
       width: 75%;
       margin: 25px auto;
