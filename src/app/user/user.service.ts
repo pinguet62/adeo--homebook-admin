@@ -23,7 +23,8 @@ export class UserService {
   getById(id: string): Observable<IUser> {
     return this.http
       .get<HomebookResult<IUser>>(environment.apiUrl + `/users/${id}`)
-      .map((it) => it.data);
+      .map((it) => it.data)
+      .do((it: IUser) => it.permissions = it.permissions || []);
   }
 
   updatePermissions(id: string, permissions: string[]): Observable<string[]> {
