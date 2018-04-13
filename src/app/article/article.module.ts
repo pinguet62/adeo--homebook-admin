@@ -17,11 +17,13 @@ import {
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
-import {ConfirmDialogModule} from '../common';
+import {ConfirmDialogModule, OfflineModule} from '../common';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
 import {ArticleListComponent} from './article-list.component';
+import {ArticleOfflineService} from './article-offline.service';
+import {ArticleOnlineService} from './article-online.service';
 import {routes} from './article-routing';
 import {ArticleShowComponent} from './article-show.component';
 import {ArticleUpdateComponent} from './article-update.component';
@@ -39,6 +41,7 @@ import {ArticleService} from './article.service';
     // app
     RouterModule.forChild(routes),
     ConfirmDialogModule,
+    OfflineModule,
   ],
   declarations: [
     ArticleComponent,
@@ -49,7 +52,9 @@ import {ArticleService} from './article.service';
     PreviewDialogComponent
   ],
   providers: [
-    ArticleService
+    ArticleService,
+    ArticleOnlineService,
+    ArticleOfflineService,
   ]
 })
 export class ArticleModule {
