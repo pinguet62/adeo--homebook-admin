@@ -17,7 +17,7 @@ import {
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
-import {ConfirmDialogModule, OfflineModule} from '../common';
+import {ConfirmDialogModule, OfflineModule} from '../shared';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';

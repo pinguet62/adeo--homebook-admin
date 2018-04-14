@@ -18,7 +18,7 @@ import {
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
-import {AlertModule, ValidatorsModule} from '../common';
+import {AlertModule, ValidatorsModule} from '../shared';
 import {UserPermissionsComponent} from './user-permissions.component';
 import {routes} from './user-routing';
 import {UserComponent} from './user.component';

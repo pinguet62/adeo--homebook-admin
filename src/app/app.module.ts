@@ -20,11 +20,11 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {environment} from '../environments/environment';
 import {routes} from './app-routing';
 import {AppComponent} from './app.component';
-import {AlertModule, GlobalErrorModule, I18nModule} from './common';
 import {IndexComponent} from './index.component';
 import {EmptyComponent} from './layout/empty.component';
 import {RouterOutletComponent} from './layout/router-outlet.component';
 import {LoginModule} from './login';
+import {AlertModule, GlobalErrorModule, I18nModule} from './shared';
 
 @NgModule({
   imports: [

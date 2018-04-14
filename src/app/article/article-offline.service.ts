@@ -6,7 +6,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
 import {Observable} from 'rxjs/Observable';
 
-import {OfflineService} from '../common';
+import {OfflineService} from '../shared';
 import {ArticleOnlineService} from './article-online.service';
 import {IArticle} from './article.service';
 

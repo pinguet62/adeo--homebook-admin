@@ -2,7 +2,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 
 import {GlobalErrorHandler} from './global-error-handler';
 
-describe('common/global-error-handler', () => {
+describe('shared/global-error-handler', () => {
   describe(`${GlobalErrorHandler.getMessage.name}`, () => {
     describe(`For type ${HttpErrorResponse.name}`, () => {
       it('Wrapped Homebook response: should return sub-field "errors"', () => {

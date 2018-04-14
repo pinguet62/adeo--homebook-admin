@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/delay';
 import {Observable} from 'rxjs/Observable';
 
-import {AlertLevel, AlertService} from '../common';
+import {AlertLevel, AlertService} from '../shared';
 import {IUser, UserService} from './user.service';
 
 @Component({

@@ -1,7 +1,7 @@
 import 'rxjs/add/observable/of';
 import {Observable} from 'rxjs/Observable';
 
-import {OfflineService} from '../common';
+import {OfflineService} from '../shared';
 import {ArticleOfflineService} from './article-offline.service';
 import {ArticleOnlineService} from './article-online.service';
 import {IArticle} from './article.service';
