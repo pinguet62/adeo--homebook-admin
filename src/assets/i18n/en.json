@@ -6,7 +6,7 @@
     "search": "Search",
     "save": "Save",
     "confirm": {
-      "common.confirm.title": "Are you sure?"
+      "title": "Are you sure?"
     },
     "toolbar": {
       "app": "Application"

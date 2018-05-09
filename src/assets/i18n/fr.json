@@ -6,7 +6,7 @@
     "search": "Rechercher",
     "save": "Sauvegarder",
     "confirm": {
-      "common.confirm.title": "Êtes-vous sûr ?"
+      "title": "Êtes-vous sûr ?"
     },
     "toolbar": {
       "app": "Application"
