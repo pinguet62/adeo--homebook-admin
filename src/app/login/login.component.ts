@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
+import {tap} from 'rxjs/operators';
 
 import {ORIGINAL_URL} from './constants';
 import {LoginService} from './login.service';
@@ -74,7 +75,7 @@ export class LoginComponent implements OnInit {
   onLogin() {
     this.loginService
       .login(this.email, this.password)
-      .do(() => this.router.navigate([this.originalUrl]))
+      .pipe(tap(() => this.router.navigate([this.originalUrl])))
       .subscribe();
   }
 

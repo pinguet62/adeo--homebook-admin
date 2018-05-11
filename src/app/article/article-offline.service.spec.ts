@@ -1,5 +1,4 @@
-import 'rxjs/add/observable/of';
-import {Observable} from 'rxjs/Observable';
+import {Observable, of} from 'rxjs';
 
 import {OfflineService} from '../shared';
 import {ArticleOfflineService} from './article-offline.service';
@@ -12,7 +11,7 @@ describe('article/article-offline.service', () => {
   beforeEach(() => {
     onlineArticleService = jasmine.createSpyObj(ArticleOnlineService.name, Object.keys(ArticleOnlineService.prototype));
     service = new ArticleOfflineService(
-      {online: Observable.of(false)} as OfflineService,
+      {online: of(false)} as OfflineService,
       onlineArticleService
     );
   });
@@ -62,7 +61,7 @@ describe('article/article-offline.service', () => {
         service.createCache.push(newArticle);
         service.listCache.push(newArticle);
 
-        const onlineCreate = onlineArticleService.create.and.returnValue(Observable.of({
+        const onlineCreate = onlineArticleService.create.and.returnValue(of({
           _id: 'real',
           title: 'expected'
         } as IArticle));
@@ -81,7 +80,7 @@ describe('article/article-offline.service', () => {
         service.updateCache.push(existingArticle);
         service.listCache.push(existingArticle);
 
-        const onlineUpdate = onlineArticleService.update.and.returnValue(Observable.of({
+        const onlineUpdate = onlineArticleService.update.and.returnValue(of({
           _id: '_id',
           title: 'updated'
         } as IArticle));
@@ -100,7 +99,7 @@ describe('article/article-offline.service', () => {
         service.deleteCache.push(existingArticle);
         service.listCache.push(existingArticle);
 
-        const onlineDelete = onlineArticleService.delete.and.returnValue(Observable.of({_id: '_id'} as IArticle));
+        const onlineDelete = onlineArticleService.delete.and.returnValue(of({_id: '_id'} as IArticle));
 
         service.sync();
 

@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
 import {HomebookResult} from '../homebookResult';
@@ -23,8 +24,8 @@ export class UserService {
   getById(id: string): Observable<IUser> {
     return this.http
       .get<HomebookResult<IUser>>(environment.apiUrl + `/users/${id}`)
-      .map((it) => it.data)
-      .do((it: IUser) => it.permissions = it.permissions || []);
+      .pipe(map(it => it.data))
+      .pipe(tap((it: IUser) => it.permissions = it.permissions || []));
   }
 
   updatePermissions(id: string, permissions: string[]): Observable<string[]> {
@@ -33,7 +34,7 @@ export class UserService {
         environment.apiUrl + `/users/${id}/permissions`,
         permissions
       )
-      .map((it) => it.data);
+      .pipe(map(it => it.data));
   }
 
 }

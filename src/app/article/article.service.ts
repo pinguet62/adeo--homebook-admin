@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 
-import {Observable} from 'rxjs/Observable';
 import {OfflineService} from '../shared';
 import {ArticleOfflineService} from './article-offline.service';
 import {ArticleOnlineService} from './article-online.service';

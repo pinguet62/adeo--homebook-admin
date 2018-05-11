@@ -1,10 +1,6 @@
 import {Injectable} from '@angular/core';
-import 'rxjs/add/observable/from';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/mergeMap';
-import {Observable} from 'rxjs/Observable';
+import {Observable, of} from 'rxjs';
+import {filter, mergeMap, tap} from 'rxjs/operators';
 
 import {OfflineService} from '../shared';
 import {ArticleOnlineService} from './article-online.service';
@@ -25,7 +21,7 @@ export class ArticleOfflineService {
     private onlineArticleService: ArticleOnlineService
   ) {
     this.offlineService.online
-      .filter(it => it) // offline -> online
+      .pipe(filter(it => it)) // offline -> online
       .subscribe(() => this.sync());
   }
 
@@ -33,60 +29,60 @@ export class ArticleOfflineService {
   public sync() {
     console.log('Sync...');
 
-    Observable.from(this.createCache)
-      .do(article => {
+    of(...this.createCache)
+      .pipe(tap(article => {
         // delete cached (by "_id")
         const index = this.createCache.findIndex(it => it._id === article._id);
         this.createCache.splice(index, 1);
-      })
-      .do(article => {
+      }))
+      .pipe(tap(article => {
         // refresh cached (by "_id")
         const index = this.listCache.findIndex(it => it._id === article._id);
         this.listCache.splice(index, 1);
-      })
-      .do(it => delete it._id) // temporary "_id"
-      .mergeMap(it => this.onlineArticleService.create(it))
-      .do(article => this.listCache.push(article)) // refresh cached (by "_id")
+      }))
+      .pipe(tap(it => delete it._id)) // temporary "_id"
+      .pipe(mergeMap(it => this.onlineArticleService.create(it)))
+      .pipe(tap(article => this.listCache.push(article))) // refresh cached (by "_id")
       .subscribe();
 
-    Observable.from(this.updateCache)
-      .do(article => {
+    of(...this.updateCache)
+      .pipe(tap(article => {
         // delete cached (by "_id")
         const index = this.updateCache.findIndex(it => it._id === article._id);
         this.updateCache.splice(index, 1);
-      })
-      .do(article => {
+      }))
+      .pipe(tap(article => {
         // refresh cached (by "_id")
         const index = this.listCache.findIndex(it => it._id === article._id);
         this.listCache.splice(index, 1);
-      })
-      .mergeMap(it => this.onlineArticleService.update(it))
-      .do(article => this.listCache.push(article)) // refresh cached (by "_id")
+      }))
+      .pipe(mergeMap(it => this.onlineArticleService.update(it)))
+      .pipe(tap(article => this.listCache.push(article))) // refresh cached (by "_id")
       .subscribe();
 
-    Observable.from(this.deleteCache)
-      .do(article => {
+    of(...this.deleteCache)
+      .pipe(tap(article => {
         // delete cached (by "_id")
         const index = this.deleteCache.findIndex(it => it._id === article._id);
         this.deleteCache.splice(index, 1);
-      })
-      .do(article => {
+      }))
+      .pipe(tap(article => {
         // refresh cached (by "_id")
         const index = this.listCache.findIndex(it => it._id === article._id);
         this.listCache.splice(index, 1);
-      })
-      .mergeMap(it => this.onlineArticleService.delete(it))
-      .do(article => this.listCache.push(article)) // refresh cached (by "_id")
+      }))
+      .pipe(mergeMap(it => this.onlineArticleService.delete(it)))
+      .pipe(tap(article => this.listCache.push(article))) // refresh cached (by "_id")
       .subscribe();
   }
 
   list(search: string = ''): Observable<IArticle[]> {
-    return Observable.of(this.listCache);
+    return of(this.listCache);
   }
 
   get(_id: string): Observable<IArticle> {
     const article = this.listCache.find(it => it._id === _id);
-    return Observable.of(article);
+    return of(article);
   }
 
   create(article: IArticle): Observable<IArticle> {
@@ -95,7 +91,7 @@ export class ArticleOfflineService {
 
     this.listCache.push(article);
 
-    return Observable.of(article);
+    return of(article);
   }
 
   update(article: IArticle): Observable<IArticle> {
@@ -105,7 +101,7 @@ export class ArticleOfflineService {
     const index = this.listCache.findIndex(it => it._id === article._id);
     this.listCache[index] = article;
 
-    return Observable.of(article);
+    return of(article);
   }
 
   delete(article: IArticle): Observable<any> {
@@ -115,7 +111,7 @@ export class ArticleOfflineService {
     const index = this.listCache.findIndex(it => it._id === article._id);
     this.listCache.splice(index, 1);
 
-    return Observable.of(article);
+    return of(article);
   }
 
   private refreshCached(article: IArticle) {

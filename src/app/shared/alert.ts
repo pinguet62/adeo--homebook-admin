@@ -24,7 +24,7 @@ export class AlertComponent {
   }
 }
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class AlertService {
 
   constructor(private snackBar: MatSnackBar) {

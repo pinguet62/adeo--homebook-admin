@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable, Injector} from '@angular/core';
-import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
 import {HomebookResult} from '../homebookResult';
@@ -23,17 +23,17 @@ export class ArticleOnlineService {
   list(search: string = ''): Observable<IArticle[]> {
     return this.http
       .get<HomebookResult<IArticle[]>>(environment.apiUrl + `/package-management/article?search=${search}`)
-      .map((it) => it.data)
-      .do((it) => {
+      .pipe(map(it => it.data))
+      .pipe(tap(it => {
         this.offlineArticleService.listCache.splice(0, this.offlineArticleService.listCache.length);
         it.forEach(x => this.offlineArticleService.listCache.push(x));
-      });
+      }));
   }
 
   get(_id: string): Observable<IArticle> {
     return this.http
       .get<HomebookResult<IArticle>>(environment.apiUrl + `/package-management/article/${_id}`)
-      .map((it) => it.data);
+      .pipe(map(it => it.data));
   }
 
   create(article: IArticle): Observable<IArticle> {
@@ -42,7 +42,7 @@ export class ArticleOnlineService {
         environment.apiUrl + `/package-management/article`,
         article
       )
-      .map((it) => it.data);
+      .pipe(map(it => it.data));
   }
 
   update(article: IArticle): Observable<IArticle> {
@@ -51,7 +51,7 @@ export class ArticleOnlineService {
         environment.apiUrl + `/package-management/article/${article._id}`,
         article
       )
-      .map((it) => it.data);
+      .pipe(map(it => it.data));
   }
 
   delete(article: IArticle): Observable<any> {

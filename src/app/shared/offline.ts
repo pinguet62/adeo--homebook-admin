@@ -1,24 +1,20 @@
 import {Injectable, NgModule} from '@angular/core';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/mapTo';
-import {Observable} from 'rxjs/Observable';
+import {fromEvent, merge, Observable, of} from 'rxjs';
+import {mapTo} from 'rxjs/operators';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class OfflineService {
 
   public isOnline: boolean = window.navigator.onLine; // not reactive: should be updated by "online#subscribe()"
 
   public online: Observable<boolean>;
 
-  public onOnline: Observable<boolean> = Observable.fromEvent(window, 'online').mapTo(true);
+  public onOnline: Observable<boolean> = fromEvent(window, 'online').pipe(mapTo(true));
 
-  public onOffline: Observable<boolean> = Observable.fromEvent(window, 'offline').mapTo(false);
+  public onOffline: Observable<boolean> = fromEvent(window, 'offline').pipe(mapTo(false));
 
   constructor() {
-    this.online = Observable.merge(Observable.of(this.isOnline), this.onOnline, this.onOffline);
+    this.online = merge(of(this.isOnline), this.onOnline, this.onOffline);
     this.online.subscribe(it => this.isOnline = it);
   }
 

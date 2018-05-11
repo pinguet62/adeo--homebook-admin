@@ -17,7 +17,7 @@ import {
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
-import {ConfirmDialogModule, OfflineModule} from '../shared';
+import {ConfirmDialogModule} from '../shared';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
@@ -41,7 +41,6 @@ import {ArticleService} from './article.service';
     // app
     RouterModule.forChild(routes),
     ConfirmDialogModule,
-    OfflineModule,
   ],
   declarations: [
     ArticleComponent,

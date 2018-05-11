@@ -1,10 +1,8 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {Component, ViewChild} from '@angular/core';
 import {MatChipInputEvent, MatStepper} from '@angular/material';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/delay';
-import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs';
+import {catchError, delay, tap} from 'rxjs/operators';
 
 import {AlertLevel, AlertService} from '../shared';
 import {IUser, UserService} from './user.service';
@@ -69,13 +67,13 @@ export class UserPermissionsComponent {
 
   searchUser() {
     this.userService.getById(this.userId)
-      .do((user) => this.user = user)
-      .delay(100) // TODO Workaround: waiting for <mat-step [completed]="user!==null"> before MatStepper#next()
-      .do(() => this.stepper.next())
-      .catch((error: HttpErrorResponse) => {
+      .pipe(tap((user) => this.user = user))
+      .pipe(delay(100)) // TODO Workaround: waiting for <mat-step [completed]="user!==null"> before MatStepper#next()
+      .pipe(tap(() => this.stepper.next()))
+      .pipe(catchError((error: HttpErrorResponse) => {
         this.alertService.show('User not found', AlertLevel.WARN); // TODO if (error.status === 404) ...
-        return Observable.of(error);
-      })
+        return of(error);
+      }))
       .subscribe();
   }
 

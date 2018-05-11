@@ -1,8 +1,7 @@
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/map';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
 import {HomebookResult} from '../homebookResult';
@@ -27,11 +26,11 @@ export class LoginService {
       {
         headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
       })
-      .map((it) => it.data)
-      .do((token) => {
+      .pipe(map(it => it.data))
+      .pipe(tap((token) => {
         this.jwtToken = token;
         window.localStorage.setItem(LOCALSTORAGE_JWTTOKEN_KEY, this.jwtToken);
-      });
+      }));
   }
 
   public logout() {

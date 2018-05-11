@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ErrorHandler, Injectable, Injector, NgModule} from '@angular/core';
 
-import {AlertLevel, AlertModule, AlertService} from './alert';
+import {AlertLevel, AlertService} from './alert';
 
 // "Injector" usage: avoid circular dependency
 @Injectable()
@@ -38,8 +38,6 @@ export class GlobalErrorHandler implements ErrorHandler {
 @NgModule({
   imports: [
     CommonModule,
-    // app
-    AlertModule,
   ],
   providers: [
     {provide: ErrorHandler, useClass: GlobalErrorHandler}
