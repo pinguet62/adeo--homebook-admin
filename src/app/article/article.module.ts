@@ -11,6 +11,7 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
+  MatProgressSpinnerModule,
   MatSelectModule,
   MatTooltipModule
 } from '@angular/material';
@@ -37,7 +38,7 @@ import {ArticleService} from './article.service';
     // lib
     TranslateModule.forChild(),
     FlexLayoutModule,
-    MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatTooltipModule,
+    MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
     ConfirmDialogModule,

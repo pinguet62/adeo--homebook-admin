@@ -18,7 +18,9 @@ import {ArticleService, IArticle} from './article.service';
         </button>
       </mat-form-field>
 
-      <mat-list ngClass.gt-sm="mat-elevation-z8" ngStyle.lt-md="margin-bottom: 80px;">
+      <mat-progress-spinner *ngIf="!articles" mode="indeterminate" style="margin: auto;"></mat-progress-spinner>
+
+      <mat-list *ngIf="articles && articles.length > 0" ngClass.gt-sm="mat-elevation-z8" ngStyle.lt-md="margin-bottom: 80px;">
         <mat-list-item *ngFor="let article of articles">
           <!-- icon -->
           <img matListAvatar [src]="article.cover.thumbnails?.small || article.cover.path" alt="">
@@ -47,6 +49,8 @@ import {ArticleService, IArticle} from './article.service';
       </mat-list>
     </div>
 
+    <p *ngIf="articles && articles.length === 0">{{'common.noResult' | translate}}</p>
+
     <button mat-fab color="warn" class="floating" routerLink="./create">
       <mat-icon>add</mat-icon>
     </button>
@@ -64,7 +68,7 @@ export class ArticleListComponent {
 
   search: string;
 
-  articles: IArticle[] = [];
+  articles: IArticle[] = null;
 
   constructor(
     private router: Router,
