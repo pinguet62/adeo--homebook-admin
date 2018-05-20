@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ErrorHandler, Injectable, Injector, NgModule} from '@angular/core';
 
-import {HomebookResult} from '../homebookResult';
+import {HomebookResult, isWrappedResult} from '../homebookResult';
 import {AlertLevel, AlertService} from './alert';
 
 // "Injector" usage: avoid circular dependency
@@ -19,7 +19,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     if (error instanceof HttpErrorResponse) {
       // Homebook wrapped response
       const httpError = error.error;
-      if (httpError && typeof httpError === 'object' && ['status', 'data', 'errors'].every((field) => field in httpError)) {
+      if (httpError && isWrappedResult(httpError)) {
         return (httpError as HomebookResult).errors;
       }
     }

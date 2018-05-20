@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
-import {ArticleService, IArticle} from './article.service';
+import {ArticleService, IArticle, IMedia} from './article.service';
 
 @Component({
   template: `
@@ -17,11 +17,12 @@ export class ArticleCreateComponent {
     private route: ActivatedRoute,
     private articleService: ArticleService,
   ) {
-    this.article = ({
-      content: '',
+    this.article = {
+      title: '',
+      contents: '',
       tags: [],
-      cover: {},
-    } as any) as IArticle;
+      cover: {} as IMedia,
+    };
   }
 
   onCreated(article: IArticle) {

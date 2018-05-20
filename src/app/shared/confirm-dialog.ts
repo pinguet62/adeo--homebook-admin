@@ -7,10 +7,10 @@ import {TranslateModule} from '@ngx-translate/core';
   template: `
     <mat-dialog-content>{{'common.confirm.title' | translate}}</mat-dialog-content>
     <mat-dialog-actions>
-      <button matDialogClose [matDialogClose]="true" mat-raised-button color="primary">
+      <button matDialogClose [matDialogClose]="true" type="button" mat-raised-button color="primary">
         {{'common.yes' | translate}}
       </button>
-      <button matDialogClose [matDialogClose]="false" mat-raised-button color="warn">
+      <button matDialogClose [matDialogClose]="false" type="button" mat-raised-button color="warn">
         {{'common.no' | translate}}
       </button>
     </mat-dialog-actions>

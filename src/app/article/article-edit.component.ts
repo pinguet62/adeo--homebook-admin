@@ -61,11 +61,11 @@ export class PreviewDialogComponent {
 
         <!-- TODO separate form -->
         <mat-form-field>
-        <textarea
-          [ngModel]="article.cover | json" (ngModelChange)="setCover($event)" #coverModel="ngModel" name="cover"
-          required
-          [placeholder]="'article.form.cover' | translate"
-          matInput rows="5"></textarea>
+          <textarea
+            [ngModel]="article.cover | json" (ngModelChange)="setCover($event)" #coverModel="ngModel" name="cover"
+            required
+            [placeholder]="'article.form.cover' | translate"
+            matInput rows="5"></textarea>
         </mat-form-field>
 
         <mat-form-field>
@@ -76,10 +76,10 @@ export class PreviewDialogComponent {
         </mat-form-field>
 
         <mat-form-field>
-      <textarea
-        [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"
-        [placeholder]="'article.form.contents' | translate"
-        matInput rows="10"></textarea>
+          <textarea
+            [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"
+            [placeholder]="'article.form.contents' | translate"
+            matInput rows="10"></textarea>
           <mat-icon (click)="showPreview()" matSuffix>visibility</mat-icon>
         </mat-form-field>
       </div>

@@ -18,7 +18,7 @@ import {ArticleService, IArticle} from './article.service';
         </button>
       </mat-form-field>
 
-      <mat-progress-spinner *ngIf="!articles" mode="indeterminate" style="margin: auto;"></mat-progress-spinner>
+      <mat-spinner *ngIf="!articles" style="margin: auto;"></mat-spinner>
 
       <mat-list *ngIf="articles && articles.length > 0" ngClass.gt-sm="mat-elevation-z8" ngStyle.lt-md="margin-bottom: 80px;">
         <mat-list-item *ngFor="let article of articles">

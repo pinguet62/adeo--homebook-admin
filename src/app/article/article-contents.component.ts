@@ -6,14 +6,14 @@ const markdownRenderer = markdown({html: true});
 @Component({
   selector: 'app-article-contents',
   template: `
-    <div #contentHtml></div>
+    <div #contentsHtml></div>
   `
 })
 export class ArticleContentsComponent implements OnChanges {
 
   @Input() markdown: string;
 
-  @ViewChild('contentHtml', {read: ElementRef}) contentHtml: ElementRef;
+  @ViewChild('contentsHtml', {read: ElementRef}) contentsHtml: ElementRef;
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('markdown' in changes) {
@@ -22,8 +22,8 @@ export class ArticleContentsComponent implements OnChanges {
   }
 
   private generateHtml() {
-    if (this.contentHtml && this.markdown) {
-      this.contentHtml.nativeElement.innerHTML = markdownRenderer.render(this.markdown);
+    if (this.contentsHtml && this.markdown) {
+      this.contentsHtml.nativeElement.innerHTML = markdownRenderer.render(this.markdown);
     }
   }
 
