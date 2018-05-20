@@ -1,25 +1,30 @@
 import {HttpErrorResponse} from '@angular/common/http';
 
+import {HomebookResult} from '../homebookResult';
 import {GlobalErrorHandler} from './global-error-handler';
 
 describe('shared/global-error-handler', () => {
   describe(`${GlobalErrorHandler.getMessage.name}`, () => {
     describe(`For type ${HttpErrorResponse.name}`, () => {
-      it('Wrapped Homebook response: should return sub-field "errors"', () => {
-        const homebookResponse = {status: 'any', data: 'any', errors: 'expected'};
-        const error = new HttpErrorResponse({error: homebookResponse});
+      it('Should return field "error"', () => {
+        const message = 'expected';
 
-        const message = GlobalErrorHandler.getMessage(error);
+        const httpErrorResponse = new HttpErrorResponse({statusText: message});
 
-        expect(message).toEqual('expected');
+        const result = GlobalErrorHandler.getMessage(httpErrorResponse);
+
+        expect(result).toContain(message); // built message
       });
 
-      it('Should return field "error"', () => {
-        const error = new HttpErrorResponse({error: 'expected'});
+      it('Wrapped Homebook response: should return sub-field "errors"', () => {
+        const message = 'expected';
+        const homebookMessage: HomebookResult = {status: 'any', data: 'any', errors: message};
 
-        const message = GlobalErrorHandler.getMessage(error);
+        const error = new HttpErrorResponse({error: homebookMessage});
 
-        expect(message).toEqual('expected');
+        const result = GlobalErrorHandler.getMessage(error);
+
+        expect(result).toEqual(message);
       });
     });
   });
