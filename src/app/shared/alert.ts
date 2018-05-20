@@ -10,16 +10,34 @@ export enum AlertLevel {
 
 interface AlertData {
   level: AlertLevel;
-  message: string;
+  message: string | string[];
 }
 
 @Component({
   template: `
-    <mat-icon [color]="'app-'+data.level">{{data.level}}</mat-icon>
-    {{data.message}}
-  `
+    <mat-icon [color]="'app-'+data.level" style="margin-right: 14px;">{{data.level}}</mat-icon>
+
+    <div *ngIf="!Array.isArray(data.message); else array">
+      {{data.message}}
+    </div>
+    <ng-template #array>
+      <div>
+        <ul>
+          <li *ngFor="let it of data.message">{{it}}</li>
+        </ul>
+      </div>
+    </ng-template>
+  `,
+  styles: [`
+    :host {
+      display: flex;
+      align-items: center;
+    }
+  `]
 })
 export class AlertComponent {
+  Array = Array; // "Array" class usage into template
+
   constructor(@Inject(MAT_SNACK_BAR_DATA) public data: AlertData) {
   }
 }
@@ -30,7 +48,7 @@ export class AlertService {
   constructor(private snackBar: MatSnackBar) {
   }
 
-  public show(message: string, level: AlertLevel) {
+  public show(message: string | string[], level: AlertLevel) {
     const data: AlertData = {level, message};
     this.snackBar.openFromComponent(AlertComponent, {
       data,
