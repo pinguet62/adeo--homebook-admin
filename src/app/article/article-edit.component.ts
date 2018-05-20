@@ -22,7 +22,7 @@ export class PreviewDialogComponent {
 @Component({
   selector: 'app-edit-article',
   template: `
-    <form *ngIf="article" #articleForm="ngForm">
+    <form *ngIf="article" #articleForm="ngForm" (ngSubmit)="edited.emit(article)">
       <div fxLayout="column" class="article-edit mat-elevation-z8">
         <mat-checkbox [(ngModel)]="article.published" #publishedModel="ngModel" name="published">
           {{'article.form.published' | translate}}
@@ -87,7 +87,6 @@ export class PreviewDialogComponent {
       <button
         type="submit"
         [disabled]="!articleForm.form.valid"
-        (click)="edited.emit(article)"
         mat-raised-button color="primary" class="article-edit-submit">
         {{'common.save' | translate}}
       </button>

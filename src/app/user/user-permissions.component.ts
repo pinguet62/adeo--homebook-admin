@@ -12,7 +12,7 @@ import {IUser, UserService} from './user.service';
     <div class="mat-elevation-z8">
       <mat-vertical-stepper #stepper linear>
         <mat-step [completed]="user !== null" [label]="'user.permissions.searchStep.title' | translate">
-          <form (submit)="searchUser()" #userIdForm="ngForm">
+          <form (ngSubmit)="searchUser()" #userIdForm="ngForm">
             <mat-form-field style="padding: 0px 16px;">
               <input
                 [(ngModel)]="userId" name="userId"
@@ -28,7 +28,7 @@ import {IUser, UserService} from './user.service';
         </mat-step>
 
         <mat-step [label]="'user.permissions.editStep.title' | translate">
-          <form *ngIf="user" (submit)="savePermissions()">
+          <form *ngIf="user" (ngSubmit)="savePermissions()">
             <mat-form-field>
               <mat-chip-list #permissionsChipList>
                 <mat-chip
