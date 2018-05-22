@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "lint": "ng lint",
-    "test": "ng test --source-map=false",
+    "test": "ng test --code-coverage",
     "e2e": "ng e2e",
     "build": "ng build",
     "start": "ng serve"
