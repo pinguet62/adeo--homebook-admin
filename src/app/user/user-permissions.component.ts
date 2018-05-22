@@ -1,6 +1,6 @@
 import {HttpErrorResponse} from '@angular/common/http';
-import {Component, ViewChild} from '@angular/core';
-import {MatChipInputEvent, MatStepper} from '@angular/material';
+import {Component, ElementRef, ViewChild} from '@angular/core';
+import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatStepper} from '@angular/material';
 import {of} from 'rxjs';
 import {catchError, delay, tap} from 'rxjs/operators';
 
@@ -12,7 +12,7 @@ import {IUser, UserService} from './user.service';
     <div class="mat-elevation-z8">
       <mat-vertical-stepper #stepper linear>
         <mat-step [completed]="user !== null" [label]="'user.permissions.searchStep.title' | translate">
-          <form (ngSubmit)="searchUser()" #userIdForm="ngForm">
+          <form (ngSubmit)="searchUser()" #userIdForm="ngForm" fxLayout="column">
             <mat-form-field style="padding: 0px 16px;">
               <input
                 [(ngModel)]="userId" name="userId"
@@ -28,7 +28,7 @@ import {IUser, UserService} from './user.service';
         </mat-step>
 
         <mat-step [label]="'user.permissions.editStep.title' | translate">
-          <form *ngIf="user" (ngSubmit)="savePermissions()">
+          <form *ngIf="user" (ngSubmit)="savePermissions()" fxLayout="column">
             <mat-form-field>
               <mat-chip-list #permissionsChipList>
                 <mat-chip
@@ -38,9 +38,14 @@ import {IUser, UserService} from './user.service';
                   <mat-icon matChipRemove>cancel</mat-icon>
                 </mat-chip>
                 <input
+                  #rolesInput
+                  [matAutocomplete]="roleSuggestions"
                   [matChipInputFor]="permissionsChipList"
                   (matChipInputTokenEnd)="addPermission($event)"
                   [placeholder]="'user.permissions.editStep.value' | translate">
+                <mat-autocomplete #roleSuggestions="matAutocomplete" (optionSelected)="test($event)">
+                  <mat-option *ngFor="let suggestion of suggested" [value]="suggestion">{{suggestion}}</mat-option>
+                </mat-autocomplete>
               </mat-chip-list>
             </mat-form-field>
 
@@ -55,9 +60,16 @@ export class UserPermissionsComponent {
 
   @ViewChild('stepper') stepper: MatStepper;
 
+  @ViewChild('rolesInput') rolesInput: ElementRef;
+
   userId: string;
 
   user: IUser = null;
+
+  get suggested() {
+    return ['users.manage', 'notification.send', 'package-management.manage']
+      .filter((role) => !this.user.permissions.includes(role));
+  }
 
   constructor(
     private alertService: AlertService,
@@ -88,6 +100,11 @@ export class UserPermissionsComponent {
     if (input) {
       input.value = '';
     }
+  }
+
+  test(event: MatAutocompleteSelectedEvent) {
+    this.user.permissions.push(event.option.viewValue);
+    this.rolesInput.nativeElement.value = '';
   }
 
   removePermission(value: string) {

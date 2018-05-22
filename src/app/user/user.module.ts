@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCheckboxModule,
   MatChipsModule,
@@ -31,7 +32,7 @@ import {UserService} from './user.service';
     // lib
     TranslateModule.forChild(),
     FlexLayoutModule,
-    MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
+    MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
     ValidatorsModule,
