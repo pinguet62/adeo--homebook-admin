@@ -69,7 +69,7 @@ describe('article/article-offline.service', () => {
         service.sync();
 
         expect(service.createCache.length).toBe(0);
-        expect(onlineCreate.calls.any()).toBe(true);
+        expect(onlineCreate).toHaveBeenCalled();
         expect(service.listCache.find(it => it._id === 'real').title).toBe('expected');
       });
     });
@@ -88,7 +88,7 @@ describe('article/article-offline.service', () => {
         service.sync();
 
         expect(service.updateCache.length).toBe(0);
-        expect(onlineUpdate.calls.any()).toBe(true);
+        expect(onlineUpdate).toHaveBeenCalled();
         expect(service.listCache.find(it => it._id === existingArticle._id).title).toBe('updated');
       });
     });
@@ -104,7 +104,7 @@ describe('article/article-offline.service', () => {
         service.sync();
 
         expect(service.deleteCache.length).toBe(0);
-        expect(onlineDelete.calls.any()).toBe(true);
+        expect(onlineDelete).toHaveBeenCalled();
       });
     });
   });

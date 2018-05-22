@@ -18,6 +18,7 @@ import {
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
+import {MediaModule} from '../media';
 import {ConfirmDialogModule} from '../shared';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
@@ -42,6 +43,7 @@ import {ArticleService} from './article.service';
     // app
     RouterModule.forChild(routes),
     ConfirmDialogModule,
+    MediaModule,
   ],
   declarations: [
     ArticleComponent,

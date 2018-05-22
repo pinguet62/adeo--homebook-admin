@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
+import {IMedia} from '../media';
 import {OfflineService} from '../shared';
 import {ArticleOfflineService} from './article-offline.service';
 import {ArticleOnlineService} from './article-online.service';
@@ -20,19 +21,6 @@ export interface IArticle {
   authoredAt?: string;
   cover: IMedia;
   readonly searchTokens?: IMedia;
-}
-
-export interface IMedia {
-  _id: string;
-  title?: string;
-  engine?: string; // 'local', 'openstack'
-  path: string;
-  type?: string; // 'image', 'other'
-  mime?: string;
-  thumbnails?: {
-    small: string;
-    medium: string;
-  };
 }
 
 @Injectable()

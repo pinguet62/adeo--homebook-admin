@@ -59,14 +59,11 @@ export class PreviewDialogComponent {
           </mat-select>
         </mat-form-field>
 
-        <!-- TODO separate form -->
-        <mat-form-field>
-          <textarea
-            [ngModel]="article.cover | json" (ngModelChange)="setCover($event)" #coverModel="ngModel" name="cover"
-            required
-            [placeholder]="'article.form.cover' | translate"
-            matInput rows="5"></textarea>
-        </mat-form-field>
+        <media-input-upload
+          [(ngModel)]="article.cover" #coverModel="ngModel" name="cover"
+          [lazy]="true"
+          required>
+        </media-input-upload>
 
         <mat-form-field>
           <input
@@ -133,11 +130,6 @@ export class ArticleEditComponent {
 
   showPreview() {
     this.dialogService.open<PreviewDialogComponent, DialogDataType>(PreviewDialogComponent, {data: this.article});
-  }
-
-  // JSON not available into template
-  setCover(coverJson: string) {
-    this.article.cover = JSON.parse(coverJson);
   }
 
 }
