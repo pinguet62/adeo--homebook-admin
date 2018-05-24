@@ -1,9 +1,8 @@
 import {HttpErrorResponse} from '@angular/common/http';
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatStepper} from '@angular/material';
-import {of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {catchError, delay, tap} from 'rxjs/operators';
-
 import {AlertLevel, AlertService} from '../shared';
 import {IUser, UserService} from './user.service';
 
@@ -12,15 +11,22 @@ import {IUser, UserService} from './user.service';
     <div class="mat-elevation-z8">
       <mat-vertical-stepper #stepper linear>
         <mat-step [completed]="user !== null" [label]="'user.permissions.searchStep.title' | translate">
-          <form (ngSubmit)="searchUser()" #userIdForm="ngForm" fxLayout="column">
+          <form (ngSubmit)="searchUser()" #searchForm="ngForm" fxLayout="column">
             <mat-form-field style="padding: 0px 16px;">
               <input
-                [(ngModel)]="userId" name="userId"
+                [(ngModel)]="userId" name="userId" #userIdModel="ngModel"
                 (change)="user = null"
-                required objectId
-                [placeholder]="'user.permissions.searchStep.placeholder' | translate" matInput>
+                [requiredWithout]="userEmailModel" objectId
+                [placeholder]="'user.permissions.searchStep.id' | translate" matInput>
             </mat-form-field>
-            <button type="submit" mat-raised-button>
+            <mat-form-field style="padding: 0px 16px;">
+              <input
+                [(ngModel)]="userEmail" name="userEmail" #userEmailModel="ngModel"
+                (change)="user = null"
+                [requiredWithout]="userIdModel" email
+                [placeholder]="'user.permissions.searchStep.email' | translate" matInput>
+            </mat-form-field>
+            <button type="submit" [disabled]="!searchForm.form.valid" mat-raised-button>
               <span>{{'common.search' | translate}}</span>
               <mat-icon>search</mat-icon>
             </button>
@@ -64,6 +70,8 @@ export class UserPermissionsComponent {
 
   userId: string;
 
+  userEmail: string;
+
   user: IUser = null;
 
   get suggested() {
@@ -78,7 +86,8 @@ export class UserPermissionsComponent {
   }
 
   searchUser() {
-    this.userService.getById(this.userId)
+    const find: Observable<IUser> = this.userId ? this.userService.getById(this.userId) : this.userService.getByEmail(this.userEmail);
+    find
       .pipe(tap((user) => this.user = user))
       .pipe(delay(100)) // TODO Workaround: waiting for <mat-step [completed]="user!==null"> before MatStepper#next()
       .pipe(tap(() => this.stepper.next()))

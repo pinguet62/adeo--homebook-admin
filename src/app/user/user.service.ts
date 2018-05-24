@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
@@ -25,6 +25,17 @@ export class UserService {
     return this.http
       .get<HomebookResult<IUser>>(environment.apiUrl + `/users/${id}`)
       .pipe(map(it => it.data))
+      .pipe(tap((it: IUser) => it.permissions = it.permissions || []));
+  }
+
+  getByEmail(email: string): Observable<IUser> {
+    return this.http
+      .get<HomebookResult<IUser>>(
+        environment.apiUrl + `/users/fromEmail`,
+        {params: new HttpParams().set('emails', [email].join(','))}
+      )
+      .pipe(map(it => it.data))
+      .pipe(map(it => it[email])) // object: key=email / value=IUser
       .pipe(tap((it: IUser) => it.permissions = it.permissions || []));
   }
 

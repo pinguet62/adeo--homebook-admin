@@ -45,7 +45,8 @@
     "permissions": {
       "searchStep": {
         "title": "User",
-        "placeholder": "User's ID"
+        "id": "User's ID",
+        "email": "User's email"
       },
       "editStep": {
         "title": "Permissions",
