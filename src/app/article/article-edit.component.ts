@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
-import {MAT_DIALOG_DATA, MatChipInputEvent, MatDialog} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 
 import {IArticle} from './article.service';
 
@@ -36,20 +36,10 @@ export class PreviewDialogComponent {
             matInput>
         </mat-form-field>
 
-        <mat-form-field>
-          <mat-chip-list #tagsChipList>
-            <mat-chip
-              *ngFor="let tag of article.tags"
-              [removable]="true" (removed)="removeTag(tag)">
-              {{tag}}
-              <mat-icon matChipRemove>cancel</mat-icon>
-            </mat-chip>
-            <input
-              [matChipInputFor]="tagsChipList"
-              (matChipInputTokenEnd)="addTag($event)"
-              [placeholder]="'article.form.tags' | translate">
-          </mat-chip-list>
-        </mat-form-field>
+        <chip-list-autocomplete
+          [(ngModel)]="article.tags" name="tags"
+          [placeholder]="'article.form.tags' | translate">
+        </chip-list-autocomplete>
 
         <mat-form-field>
           <mat-select [(value)]="article.partnerId" [placeholder]="'article.form.partner' | translate">
@@ -109,23 +99,6 @@ export class ArticleEditComponent {
   edited: EventEmitter<IArticle> = new EventEmitter<IArticle>();
 
   constructor(private dialogService: MatDialog) {
-  }
-
-  addTag(event: MatChipInputEvent) {
-    // append tag
-    const value = (event.value || '').trim();
-    if (value) {
-      this.article.tags.push(value);
-    }
-    // reset <input>
-    const input = event.input;
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  removeTag(value: string) {
-    this.article.tags.splice(this.article.tags.indexOf(value), 1);
   }
 
   showPreview() {

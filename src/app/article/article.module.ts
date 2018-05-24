@@ -5,7 +5,6 @@ import {FormsModule} from '@angular/forms';
 import {
   MatButtonModule,
   MatCheckboxModule,
-  MatChipsModule,
   MatDialogModule,
   MatIconModule,
   MatInputModule,
@@ -19,7 +18,7 @@ import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
 import {MediaModule} from '../media';
-import {ConfirmDialogModule} from '../shared';
+import {ChipListAutocompleteModule, ConfirmDialogModule} from '../shared';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
@@ -39,9 +38,10 @@ import {ArticleService} from './article.service';
     // lib
     TranslateModule.forChild(),
     FlexLayoutModule,
-    MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule,
+    MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
+    ChipListAutocompleteModule,
     ConfirmDialogModule,
     MediaModule,
   ],

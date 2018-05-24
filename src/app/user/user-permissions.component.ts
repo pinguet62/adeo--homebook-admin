@@ -1,6 +1,6 @@
 import {HttpErrorResponse} from '@angular/common/http';
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {MatAutocompleteSelectedEvent, MatChipInputEvent, MatStepper} from '@angular/material';
+import {Component, ViewChild} from '@angular/core';
+import {MatStepper} from '@angular/material';
 import {Observable, of} from 'rxjs';
 import {catchError, delay, tap} from 'rxjs/operators';
 import {AlertLevel, AlertService} from '../shared';
@@ -35,26 +35,11 @@ import {IUser, UserService} from './user.service';
 
         <mat-step [label]="'user.permissions.editStep.title' | translate">
           <form *ngIf="user" (ngSubmit)="savePermissions()" fxLayout="column">
-            <mat-form-field>
-              <mat-chip-list #permissionsChipList>
-                <mat-chip
-                  *ngFor="let permission of user.permissions"
-                  [removable]="true" (removed)="removePermission(permission)">
-                  {{permission}}
-                  <mat-icon matChipRemove>cancel</mat-icon>
-                </mat-chip>
-                <input
-                  #rolesInput
-                  [matAutocomplete]="roleSuggestions"
-                  [matChipInputFor]="permissionsChipList"
-                  (matChipInputTokenEnd)="addPermission($event)"
-                  [placeholder]="'user.permissions.editStep.value' | translate">
-                <mat-autocomplete #roleSuggestions="matAutocomplete" (optionSelected)="test($event)">
-                  <mat-option *ngFor="let suggestion of suggested" [value]="suggestion">{{suggestion}}</mat-option>
-                </mat-autocomplete>
-              </mat-chip-list>
-            </mat-form-field>
-
+            <chip-list-autocomplete
+              [(ngModel)]="user.permissions" #permissionsModel="ngModel" name="permissions"
+              [suggestions]="['users.manage', 'notification.send', 'package-management.manage']"
+              [placeholder]="'user.permissions.editStep.value' | translate">
+            </chip-list-autocomplete>
             <button type="submit" mat-raised-button color="primary">{{'common.save' | translate}}</button>
           </form>
         </mat-step>
@@ -66,18 +51,11 @@ export class UserPermissionsComponent {
 
   @ViewChild('stepper') stepper: MatStepper;
 
-  @ViewChild('rolesInput') rolesInput: ElementRef;
-
   userId: string;
 
   userEmail: string;
 
   user: IUser = null;
-
-  get suggested() {
-    return ['users.manage', 'notification.send', 'package-management.manage']
-      .filter((role) => !this.user.permissions.includes(role));
-  }
 
   constructor(
     private alertService: AlertService,
@@ -96,28 +74,6 @@ export class UserPermissionsComponent {
         return of(error);
       }))
       .subscribe();
-  }
-
-  addPermission(event: MatChipInputEvent) {
-    // append permission
-    const value = (event.value || '').trim();
-    if (value) {
-      this.user.permissions.push(value);
-    }
-    // reset <input>
-    const input = event.input;
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  test(event: MatAutocompleteSelectedEvent) {
-    this.user.permissions.push(event.option.viewValue);
-    this.rolesInput.nativeElement.value = '';
-  }
-
-  removePermission(value: string) {
-    this.user.permissions.splice(this.user.permissions.indexOf(value), 1);
   }
 
   savePermissions() {

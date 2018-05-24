@@ -3,10 +3,8 @@ import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {
-  MatAutocompleteModule,
   MatButtonModule,
   MatCheckboxModule,
-  MatChipsModule,
   MatDialogModule,
   MatIconModule,
   MatInputModule,
@@ -19,7 +17,7 @@ import {
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
-import {ValidatorsModule} from '../shared';
+import {ChipListAutocompleteModule, ValidatorsModule} from '../shared';
 import {UserPermissionsComponent} from './user-permissions.component';
 import {routes} from './user-routing';
 import {UserComponent} from './user.component';
@@ -32,9 +30,10 @@ import {UserService} from './user.service';
     // lib
     TranslateModule.forChild(),
     FlexLayoutModule,
-    MatAutocompleteModule, MatButtonModule, MatCheckboxModule, MatChipsModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
+    MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
+    ChipListAutocompleteModule,
     ValidatorsModule,
   ],
   declarations: [
