@@ -18,6 +18,9 @@ import {IUser, UserService} from './user.service';
                 (change)="user = null"
                 [requiredWithout]="userEmailModel" objectId
                 [placeholder]="'user.permissions.searchStep.id' | translate" matInput>
+              <mat-error *ngIf="userIdModel.control.invalid">
+                {{userIdModel.control.errors | errorTranslate | async}}
+              </mat-error>
             </mat-form-field>
             <mat-form-field style="padding: 0px 16px;">
               <input
@@ -25,6 +28,9 @@ import {IUser, UserService} from './user.service';
                 (change)="user = null"
                 [requiredWithout]="userIdModel" email
                 [placeholder]="'user.permissions.searchStep.email' | translate" matInput>
+              <mat-error *ngIf="userEmailModel.control.invalid">
+                {{userEmailModel.control.errors | errorTranslate | async}}
+              </mat-error>
             </mat-form-field>
             <button type="submit" [disabled]="!searchForm.form.valid" mat-raised-button>
               <span>{{'common.search' | translate}}</span>

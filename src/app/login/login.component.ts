@@ -14,20 +14,30 @@ import {LoginService} from './login.service';
         <mat-card-content fxLayout="column">
           <mat-form-field>
             <input
-              [(ngModel)]="email" #emailModel="ngModel" name="email"
               type="email"
+              [(ngModel)]="email" name="email"
+              #emailModel="ngModel"
               required email
               [placeholder]="'login.form.email' | translate"
-              matInput>
+              matInput
+              autocomplete="email">
+            <mat-error *ngIf="emailModel.control.invalid">
+              {{emailModel.control.errors | errorTranslate | async}}
+            </mat-error>
           </mat-form-field>
 
           <mat-form-field>
             <input
-              [(ngModel)]="password" #passwordModel="ngModel" name="password"
               type="password"
+              [(ngModel)]="password" name="password"
+              #passwordModel="ngModel"
               required
               [placeholder]="'login.form.password' | translate"
-              matInput>
+              matInput
+              autocomplete="password">
+            <mat-error *ngIf="passwordModel.control.invalid">
+              {{passwordModel.control.errors | errorTranslate | async}}
+            </mat-error>
           </mat-form-field>
         </mat-card-content>
 

@@ -34,6 +34,9 @@ export class PreviewDialogComponent {
             required
             [placeholder]="'article.form.title' | translate"
             matInput>
+          <mat-error *ngIf="titleModel.control.invalid">
+            {{titleModel.control.errors | errorTranslate | async}}
+          </mat-error>
         </mat-form-field>
 
         <chip-list-autocomplete

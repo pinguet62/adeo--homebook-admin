@@ -13,6 +13,13 @@
       "app": "Application"
     }
   },
+  "validation": {
+    "_": "Invalid value",
+    "required": "The value is required",
+    "email": "The value must be a valid \"email\"",
+    "pattern": "The value must match with pattern \"{{requiredPattern}}\"",
+    "objectId": "The value must be a valid \"ObjectId\""
+  },
   "login": {
     "title": "Login",
     "form": {

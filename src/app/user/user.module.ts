@@ -17,7 +17,7 @@ import {
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
-import {ChipListAutocompleteModule, ValidatorsModule} from '../shared';
+import {ChipListAutocompleteModule, ErrorTranslateModule, ValidatorsModule} from '../shared';
 import {UserPermissionsComponent} from './user-permissions.component';
 import {routes} from './user-routing';
 import {UserComponent} from './user.component';
@@ -33,6 +33,7 @@ import {UserService} from './user.service';
     MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
+    ErrorTranslateModule,
     ChipListAutocompleteModule,
     ValidatorsModule,
   ],

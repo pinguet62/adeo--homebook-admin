@@ -7,6 +7,7 @@ import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from
 import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
+import {ErrorTranslateModule} from '../shared';
 import {AuthorizationHttpInterceptor} from './authorization.http-interceptor';
 import {routes} from './login-routing';
 import {LoginComponent} from './login.component';
@@ -23,6 +24,7 @@ import {LoginService} from './login.service';
     FlexLayoutModule,
     // app
     RouterModule.forChild(routes),
+    ErrorTranslateModule,
   ],
   declarations: [
     LoginComponent,

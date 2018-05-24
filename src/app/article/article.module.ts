@@ -18,7 +18,7 @@ import {RouterModule} from '@angular/router';
 import {TranslateModule} from '@ngx-translate/core';
 
 import {MediaModule} from '../media';
-import {ChipListAutocompleteModule, ConfirmDialogModule} from '../shared';
+import {ChipListAutocompleteModule, ConfirmDialogModule, ErrorTranslateModule} from '../shared';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
@@ -41,6 +41,7 @@ import {ArticleService} from './article.service';
     MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
+    ErrorTranslateModule,
     ChipListAutocompleteModule,
     ConfirmDialogModule,
     MediaModule,
