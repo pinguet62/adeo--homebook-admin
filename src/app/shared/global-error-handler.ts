@@ -2,7 +2,7 @@ import {CommonModule} from '@angular/common';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ErrorHandler, Injectable, Injector, NgModule} from '@angular/core';
 
-import {HomebookResult, isWrappedResult} from '../homebookResult';
+import {HomebookResult, isWrappedResult} from '../homebook';
 import {AlertLevel, AlertService} from './alert';
 
 // "Injector" usage: avoid circular dependency

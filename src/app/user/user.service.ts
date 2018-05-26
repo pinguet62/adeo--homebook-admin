@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
-import {HomebookResult} from '../homebookResult';
+import {HomebookResult} from '../homebook';
 
 export interface IUser {
   _id: string;

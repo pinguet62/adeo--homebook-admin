@@ -1,6 +1,6 @@
 import {HttpErrorResponse} from '@angular/common/http';
 
-import {HomebookResult} from '../homebookResult';
+import {HomebookResult} from '../homebook';
 import {GlobalErrorHandler} from './global-error-handler';
 
 describe('shared/global-error-handler', () => {

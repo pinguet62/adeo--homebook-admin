@@ -4,7 +4,7 @@ import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
-import {HomebookResult} from '../homebookResult';
+import {HomebookResult} from '../homebook';
 import {ArticleOfflineService} from './article-offline.service';
 import {IArticle} from './article.service';
 

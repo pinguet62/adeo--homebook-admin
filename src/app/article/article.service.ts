@@ -6,6 +6,11 @@ import {OfflineService} from '../shared';
 import {ArticleOfflineService} from './article-offline.service';
 import {ArticleOnlineService} from './article-online.service';
 
+export enum PartnerId {
+  LEROY_MERLIN = 'leroymerlin-fr',
+  BOULANGER = 'boulanger-fr',
+}
+
 export interface IArticle {
   /*readonly*/ _id?: string; // readonly/optional: updatable by offline cache
   title: string;
@@ -14,7 +19,7 @@ export interface IArticle {
   contents?: string;
   url?: string;
   tags?: string[];
-  partnerId?: string; // 'leroymerlin-fr', 'kbane-fr', 'boulanger-fr'
+  partnerId?: PartnerId;
   readonly version?: string;
   author?: string;
   published?: string;

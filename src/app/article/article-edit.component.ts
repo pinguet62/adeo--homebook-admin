@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
 
-import {IArticle} from './article.service';
+import {IArticle, PartnerId} from './article.service';
 
 type DialogDataType = IArticle;
 
@@ -47,7 +47,8 @@ export class PreviewDialogComponent {
         <mat-form-field>
           <mat-select [(value)]="article.partnerId" [placeholder]="'article.form.partner' | translate">
             <mat-option>-</mat-option>
-            <mat-option *ngFor="let id of ['leroymerlin-fr', 'kbane-fr', 'boulanger-fr']" [value]="id">{{id}}
+            <mat-option *ngFor="let id of partnerIds" [value]="id">
+              {{id}}
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -94,6 +95,8 @@ export class PreviewDialogComponent {
   `]
 })
 export class ArticleEditComponent {
+
+  readonly partnerIds = Object.values(PartnerId);
 
   @Input()
   article: IArticle;
