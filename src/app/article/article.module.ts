@@ -34,8 +34,8 @@ import {ArticleService} from './article.service';
   imports: [
     CommonModule,
     FormsModule,
-    // lib
     FlexLayoutModule,
+    // lib
     MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
@@ -51,7 +51,7 @@ import {ArticleService} from './article.service';
     ArticleListComponent, ArticleShowComponent, ArticleCreateComponent, ArticleUpdateComponent,
   ],
   entryComponents: [
-    PreviewDialogComponent
+    PreviewDialogComponent,
   ],
   providers: [
     ArticleService,

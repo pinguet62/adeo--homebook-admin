@@ -29,16 +29,16 @@ import {AlertModule, GlobalErrorModule, I18nRootModule} from './shared';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FlexLayoutModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     // lib
-    FlexLayoutModule,
     MatButtonModule, MatDividerModule, MatIconModule, MatListModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
     // app
     RouterModule.forRoot(routes),
     AlertModule,
     GlobalErrorModule,
-    LoginModule,
     I18nRootModule,
+    LoginModule,
   ],
   declarations: [
     EmptyComponent, RouterOutletComponent,

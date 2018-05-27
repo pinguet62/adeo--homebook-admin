@@ -10,6 +10,7 @@ import {ArticleService, IArticle} from './article.service';
       <mat-form-field floatLabel="never" style="padding: 0px 16px;">
         <mat-icon matPrefix>search</mat-icon>
         <input
+          type="search"
           [(ngModel)]="search"
           (keyup)="refresh()" (keydown.escape)="cleanSearch()"
           [placeholder]="('common.search' | translate) + '...'" matInput>

@@ -17,9 +17,9 @@ import {LoginService} from './login.service';
   imports: [
     CommonModule,
     FormsModule,
+    FlexLayoutModule,
     // lib
     MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule,
-    FlexLayoutModule,
     // app
     RouterModule.forChild(routes),
     ErrorTranslateModule,
@@ -30,8 +30,8 @@ import {LoginService} from './login.service';
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizationHttpInterceptor, multi: true},
+    LoginGuard,
     LoginService,
-    LoginGuard
   ]
 })
 export class LoginModule {

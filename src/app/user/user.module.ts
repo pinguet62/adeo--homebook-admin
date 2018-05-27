@@ -26,8 +26,8 @@ import {UserService} from './user.service';
   imports: [
     CommonModule,
     FormsModule,
-    // lib
     FlexLayoutModule,
+    // lib
     MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
@@ -41,7 +41,7 @@ import {UserService} from './user.service';
     UserPermissionsComponent,
   ],
   providers: [
-    UserService
+    UserService,
   ]
 })
 export class UserModule {
