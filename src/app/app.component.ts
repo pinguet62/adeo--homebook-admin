@@ -39,17 +39,27 @@ import {LoginService} from './login';
         [mode]="media.isActive('gt-sm') ? 'side' : 'over'"
         [opened]="media.isActive('gt-sm')"
         [fixedInViewport]="!media.isActive('gt-sm')">
+
         <mat-nav-list>
-          <mat-list-item routerLink="/" routerLinkActive="menu-selected" [routerLinkActiveOptions]="{exact: true}">
+          <mat-list-item
+            routerLink="/" (click)="media.isActive('gt-sm') ? null : sidenav.close()"
+            routerLinkActive="menu-selected" [routerLinkActiveOptions]="{exact: true}">
             <mat-icon mat-list-icon>home</mat-icon>
             <span mat-line>{{'common.home' | translate}}</span>
           </mat-list-item>
+
           <mat-divider></mat-divider>
-          <mat-list-item routerLink="/article" routerLinkActive="menu-selected">
+
+          <mat-list-item
+            routerLink="/article" (click)="media.isActive('gt-sm') ? null : sidenav.close()"
+            routerLinkActive="menu-selected">
             <mat-icon mat-list-icon>find_in_page</mat-icon>
             <span mat-line>{{'article.title' | translate}}</span>
           </mat-list-item>
-          <mat-list-item routerLink="/user" routerLinkActive="menu-selected">
+
+          <mat-list-item
+            routerLink="/user" (click)="media.isActive('gt-sm') ? null : sidenav.close()"
+            routerLinkActive="menu-selected">
             <mat-icon mat-list-icon>person</mat-icon>
             <span mat-line>{{'user.title' | translate}}</span>
           </mat-list-item>
@@ -75,6 +85,11 @@ import {LoginService} from './login';
     .content-web {
       width: 75%;
       margin: 25px auto;
+    }
+  `, `
+    /* <mat-sidenav mode="side"> cover outside <mat-toolbar> */
+    /deep/ .mat-drawer-backdrop.mat-drawer-shown {
+      position: fixed;
     }
   `]
 })
