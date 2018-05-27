@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Title} from '@angular/platform-browser';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   template: `
@@ -19,8 +20,13 @@ import {Title} from '@angular/platform-browser';
 })
 export class IndexComponent {
 
-  constructor(titleService: Title) {
-    titleService.setTitle('Homebook');
+  constructor(
+    titleService: Title,
+    translateService: TranslateService,
+  ) {
+    translateService.get('common.title').subscribe(x =>
+      titleService.setTitle(x)
+    );
   }
 
 }

@@ -5,9 +5,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
-import {TranslateModule} from '@ngx-translate/core';
 
-import {ErrorTranslateModule} from '../shared';
+import {ErrorTranslateModule, I18nChildModule} from '../shared';
 import {AuthorizationHttpInterceptor} from './authorization.http-interceptor';
 import {routes} from './login-routing';
 import {LoginComponent} from './login.component';
@@ -19,12 +18,12 @@ import {LoginService} from './login.service';
     CommonModule,
     FormsModule,
     // lib
-    TranslateModule.forChild(),
     MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule,
     FlexLayoutModule,
     // app
     RouterModule.forChild(routes),
     ErrorTranslateModule,
+    I18nChildModule,
   ],
   declarations: [
     LoginComponent,

@@ -15,10 +15,9 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
-import {TranslateModule} from '@ngx-translate/core';
 
 import {MediaModule} from '../media';
-import {ChipListAutocompleteModule, ConfirmDialogModule, ErrorTranslateModule} from '../shared';
+import {ChipListAutocompleteModule, ConfirmDialogModule, ErrorTranslateModule, I18nChildModule} from '../shared';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
@@ -36,7 +35,6 @@ import {ArticleService} from './article.service';
     CommonModule,
     FormsModule,
     // lib
-    TranslateModule.forChild(),
     FlexLayoutModule,
     MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule,
     // app
@@ -44,6 +42,7 @@ import {ArticleService} from './article.service';
     ErrorTranslateModule,
     ChipListAutocompleteModule,
     ConfirmDialogModule,
+    I18nChildModule,
     MediaModule,
   ],
   declarations: [

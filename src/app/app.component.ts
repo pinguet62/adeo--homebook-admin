@@ -14,7 +14,7 @@ import {LoginService} from './login';
       </button>
 
       <button routerLink="/" fxShow.lt-md="false" mat-button><h1>Homebook admin</h1></button>
-      <span>{{titleService.getTitle() | translate}}</span>
+      <span>{{titleService.getTitle()}}</span>
 
       <span style="flex: 1 1 auto;"></span>
 

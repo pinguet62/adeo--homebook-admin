@@ -1,8 +1,10 @@
 import {NgModule, Pipe, PipeTransform} from '@angular/core';
 import {ValidationErrors} from '@angular/forms';
-import {TranslateModule, TranslateService} from '@ngx-translate/core';
+import {TranslateService} from '@ngx-translate/core';
 import {of} from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
+
+import {I18nChildModule} from './i18n';
 
 /**
  * @example
@@ -37,8 +39,8 @@ export class ErrorTranslatePipe implements PipeTransform {
 
 @NgModule({
   imports: [
-    // lib
-    TranslateModule.forChild(),
+    // app
+    I18nChildModule,
   ],
   declarations: [ErrorTranslatePipe],
   exports: [ErrorTranslatePipe]

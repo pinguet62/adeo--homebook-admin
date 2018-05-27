@@ -5,7 +5,7 @@ import {of, throwError} from 'rxjs';
 import {i18nInitializer} from './i18n';
 
 describe('shared/i18n', () => {
-  describe(i18nInitializer.name, () => {
+  describe(`${i18nInitializer.name}`, () => {
     const CULTURE_LANG = 'fr-FR';
     const LANG = 'fr';
 

@@ -15,9 +15,8 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
-import {TranslateModule} from '@ngx-translate/core';
 
-import {ChipListAutocompleteModule, ErrorTranslateModule, ValidatorsModule} from '../shared';
+import {ChipListAutocompleteModule, ErrorTranslateModule, I18nChildModule, ValidatorsModule} from '../shared';
 import {UserPermissionsComponent} from './user-permissions.component';
 import {routes} from './user-routing';
 import {UserComponent} from './user.component';
@@ -28,13 +27,13 @@ import {UserService} from './user.service';
     CommonModule,
     FormsModule,
     // lib
-    TranslateModule.forChild(),
     FlexLayoutModule,
     MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatSelectModule, MatStepperModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
-    ErrorTranslateModule,
     ChipListAutocompleteModule,
+    ErrorTranslateModule,
+    I18nChildModule,
     ValidatorsModule,
   ],
   declarations: [

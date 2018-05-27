@@ -1,4 +1,4 @@
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {
@@ -14,8 +14,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import {environment} from '../environments/environment';
 import {routes} from './app-routing';
@@ -24,7 +22,7 @@ import {IndexComponent} from './index.component';
 import {EmptyComponent} from './layout/empty.component';
 import {RouterOutletComponent} from './layout/router-outlet.component';
 import {LoginModule} from './login';
-import {AlertModule, GlobalErrorModule, I18nModule} from './shared';
+import {AlertModule, GlobalErrorModule, I18nRootModule} from './shared';
 
 @NgModule({
   imports: [
@@ -33,14 +31,6 @@ import {AlertModule, GlobalErrorModule, I18nModule} from './shared';
     HttpClientModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
     // lib
-    TranslateModule.forRoot({
-      useDefaultLang: true,
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) => new TranslateHttpLoader(http),
-        deps: [HttpClient]
-      }
-    }),
     FlexLayoutModule,
     MatButtonModule, MatDividerModule, MatIconModule, MatListModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
     // app
@@ -48,7 +38,7 @@ import {AlertModule, GlobalErrorModule, I18nModule} from './shared';
     AlertModule,
     GlobalErrorModule,
     LoginModule,
-    I18nModule,
+    I18nRootModule,
   ],
   declarations: [
     EmptyComponent, RouterOutletComponent,

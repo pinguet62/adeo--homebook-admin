@@ -1,7 +1,8 @@
 import {CommonModule} from '@angular/common';
 import {Component, Directive, EventEmitter, HostListener, NgModule, Output} from '@angular/core';
 import {MatButtonModule, MatDialog, MatDialogModule, MatDialogRef} from '@angular/material';
-import {TranslateModule} from '@ngx-translate/core';
+
+import {I18nChildModule} from './i18n';
 
 @Component({
   template: `
@@ -45,8 +46,9 @@ export class ConfirmDialogDirective {
   imports: [
     CommonModule,
     // lib
-    TranslateModule.forChild(),
     MatButtonModule, MatDialogModule,
+    // app
+    I18nChildModule,
   ],
   declarations: [ConfirmDialogComponent, ConfirmDialogDirective],
   entryComponents: [ConfirmDialogComponent],
