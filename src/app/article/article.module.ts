@@ -17,7 +17,13 @@ import {
 import {RouterModule} from '@angular/router';
 
 import {MediaModule} from '../media';
-import {ChipListAutocompleteModule, ConfirmDialogModule, ErrorTranslateModule, I18nChildModule} from '../shared';
+import {
+  BadgeAvatarModule,
+  ChipListAutocompleteModule,
+  ConfirmDialogModule,
+  ErrorTranslateModule,
+  I18nChildModule
+} from '../shared';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
@@ -39,6 +45,7 @@ import {ArticleService} from './article.service';
     MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule,
     // app
     RouterModule.forChild(routes),
+    BadgeAvatarModule,
     ErrorTranslateModule,
     ChipListAutocompleteModule,
     ConfirmDialogModule,

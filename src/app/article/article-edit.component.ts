@@ -46,9 +46,19 @@ export class PreviewDialogComponent {
 
         <mat-form-field>
           <mat-select [(value)]="article.partnerId" [placeholder]="'article.form.partner' | translate">
+            <mat-select-trigger *ngIf="article.partnerId">
+              <span fxLayoutAlign="flex-start center">
+                <img [src]="'assets/partner/' + article.partnerId + '.svg'" [alt]="id" class="app-avatar">
+                {{article.partnerId}}
+              </span>
+            </mat-select-trigger>
+
             <mat-option>-</mat-option>
             <mat-option *ngFor="let id of partnerIds" [value]="id">
-              {{id}}
+              <span fxLayoutAlign="flex-start center">
+                <img [src]="'assets/partner/' + id + '.svg'" [alt]="id" class="app-avatar">
+                {{id}}
+              </span>
             </mat-option>
           </mat-select>
         </mat-form-field>

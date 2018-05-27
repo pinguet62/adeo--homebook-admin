@@ -21,10 +21,16 @@ import {ArticleService, IArticle} from './article.service';
 
       <mat-spinner *ngIf="!articles" style="margin: auto;"></mat-spinner>
 
-      <mat-list *ngIf="articles && articles.length > 0" ngClass.gt-sm="mat-elevation-z8" ngStyle.lt-md="margin-bottom: 80px;">
+      <mat-list
+        *ngIf="articles && articles.length > 0"
+        ngClass.gt-sm="mat-elevation-z8" ngStyle.lt-md="margin-bottom: 80px;">
         <mat-list-item *ngFor="let article of articles">
           <!-- icon -->
-          <img matListAvatar [src]="article.cover.thumbnails?.small || article.cover.path" alt="">
+          <div
+            matListAvatar
+            [ngStyle]="{'background-image': 'url(' + (article.cover.thumbnails?.small || article.cover.path) + ')'}"
+            [appBadgeAvatar]="article.partnerId ? 'assets/partner/' + article.partnerId + '.svg' : null">
+          </div>
           <!-- text -->
           <p mat-line [routerLink]="['show', article._id]" class="mat-card-title">{{article.title}}</p>
           <p mat-line [routerLink]="['show', article._id]" class="mat-card-subtitle">{{article.summary}}</p>
