@@ -1,4 +1,5 @@
 export {AlertLevel, AlertModule, AlertService} from './alert';
+export {BadgeAvatarModule} from './badge-avatar';
 export {ChipListAutocompleteModule} from './chip-list-autocomplete';
 export {ConfirmDialogModule} from './confirm-dialog';
 export {ErrorTranslateModule} from './error-translate';

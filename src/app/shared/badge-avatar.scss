@@ -1,0 +1,11 @@
+.app-badge-avatar {
+  @import '~@angular/material/theming';
+  $size: $mat-badge-default-size;
+
+  width: $size;
+  height: $size;
+
+  position: relative;
+  top: -$size/2;
+  left: -$size/2;
+}
