@@ -238,4 +238,48 @@ describe('media/media-input-upload.component', () => {
       expect(ngFormNgSubmit.emit).toHaveBeenCalledWith(formValue);
     }));
   });
+
+  describe('Click on image should display image in new tab', () => {
+    it('when real "IMedia"', fakeAsync(() => {
+      const windowOpen = spyOn(window, 'open');
+
+      // test case
+      const path = 'https://www.google.fr/images/logo.png';
+      fixture.componentInstance.writeValue({_id: '_id', path} as IMedia);
+      fixture.componentInstance.ngOnInit(); // livecycle
+      fixture.detectChanges();
+
+      // execute
+      const img = fixture.debugElement.query(By.css('img'));
+      img.triggerEventHandler('click', null);
+
+      expect(windowOpen).toHaveBeenCalledWith(path, '_blank'); // URL + new tab
+    }));
+
+    it('when local "File"', fakeAsync(() => {
+      const fakeHtmlImageElement = {src: null};
+      const fakeNewWindow = {
+        document: {
+          createElement: (tagName) => fakeHtmlImageElement,
+          body: {
+            appendChild: (arg) => arg
+          }
+        }
+      };
+      const windowOpen = spyOn(window, 'open').and.returnValue(fakeNewWindow);
+
+      // test case
+      fixture.componentInstance.lazy = true; // for src="data:..."
+      fixture.componentInstance.ngOnInit(); // livecycle
+      fixture.detectChanges();
+
+      // execute
+      fakeUpload();
+      const img = fixture.debugElement.query(By.css('img'));
+      img.triggerEventHandler('click', null);
+
+      expect(windowOpen).toHaveBeenCalledWith('about:blank'); // new tab
+      expect(fakeHtmlImageElement.src).not.toBeNull(); // "data:..."
+    }));
+  });
 });
