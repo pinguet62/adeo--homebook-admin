@@ -4,8 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 import {tap} from 'rxjs/operators';
 
-import {ORIGINAL_URL} from './constants';
-import {LoginService} from './login.service';
+import {LoginService, ORIGINAL_URL} from '../shared';
 
 @Component({
   template: `

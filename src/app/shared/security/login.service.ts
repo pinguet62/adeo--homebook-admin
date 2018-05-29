@@ -3,12 +3,14 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
-import {environment} from '../../environments/environment';
-import {HomebookResult} from '../homebook';
+import {environment} from '../../../environments/environment';
+import {HomebookResult} from '../../homebook';
 
 const LOCALSTORAGE_JWTTOKEN_KEY = 'jwtToken';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root' // app singleton: shared with feature modules
+})
 export class LoginService {
 
   public jwtToken: string = window.localStorage.getItem(LOCALSTORAGE_JWTTOKEN_KEY);

@@ -21,8 +21,7 @@ import {AppComponent} from './app.component';
 import {IndexComponent} from './index.component';
 import {EmptyComponent} from './layout/empty.component';
 import {RouterOutletComponent} from './layout/router-outlet.component';
-import {LoginModule} from './login';
-import {AlertModule, GlobalErrorModule, I18nRootModule} from './shared';
+import {AlertModule, GlobalErrorModule, I18nRootModule, SecurityModule} from './shared';
 
 @NgModule({
   imports: [
@@ -38,7 +37,7 @@ import {AlertModule, GlobalErrorModule, I18nRootModule} from './shared';
     AlertModule,
     GlobalErrorModule,
     I18nRootModule,
-    LoginModule,
+    SecurityModule,
   ],
   declarations: [
     EmptyComponent, RouterOutletComponent,

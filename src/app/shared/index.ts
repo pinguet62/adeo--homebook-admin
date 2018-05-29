@@ -6,4 +6,5 @@ export {ErrorTranslateModule} from './error-translate';
 export {GlobalErrorModule} from './global-error-handler';
 export {I18nChildModule, I18nRootModule} from './i18n';
 export {OfflineModule, OfflineService} from './offline';
+export * from './security';
 export {ValidatorsModule} from './validators';

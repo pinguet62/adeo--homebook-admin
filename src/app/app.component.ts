@@ -3,7 +3,7 @@ import {ObservableMedia} from '@angular/flex-layout';
 import {Title} from '@angular/platform-browser';
 
 import {environment} from '../environments/environment';
-import {LoginService} from './login';
+import {LoginService} from './shared';
 
 @Component({
   selector: 'app-root',
