@@ -28,7 +28,7 @@ import {IMedia, MediaService} from './media.service';
         <button (confirmedClick)="remove()" type="button" mat-icon-button>
           <mat-icon>delete</mat-icon>
         </button>
-        <img [src]="media.path" [alt]="media.path" (click)="previewImage()" class="app-avatar">
+        <img [src]="media.path" [alt]="media.path" appPreview class="app-avatar">
       </div>
     </div>
   `,
@@ -182,18 +182,6 @@ export class MediaInputUploadComponent implements OnInit, ControlValueAccessor {
           .pipe(map(() => null));
       }
       this.media = null;
-    }
-  }
-
-  previewImage() {
-    const src = this.media.path;
-    if (src.startsWith('data:')) {
-      const w = window.open('about:blank');
-      w.document.body
-        .appendChild(w.document.createElement('img'))
-        .src = src;
-    } else {
-      window.open(src, '_blank');
     }
   }
 
