@@ -12,6 +12,11 @@
     },
     "toolbar": {
       "app": "Application"
+    },
+    "security": {
+      "roleguard": {
+        "missingrole": "Rôle manquants: {{roles}}. Merci de contacter l'administrateur."
+      }
     }
   },
   "validation": {
