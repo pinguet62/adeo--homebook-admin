@@ -1,23 +1,6 @@
-import {Component, EventEmitter, Inject, Input, Output} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog} from '@angular/material';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {IArticle, PartnerId} from './article.service';
-
-type DialogDataType = IArticle;
-
-@Component({
-  template: `
-    <mat-dialog-content>
-      <app-article-contents [markdown]="data.contents"></app-article-contents>
-    </mat-dialog-content>
-  `
-})
-export class PreviewDialogComponent {
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogDataType) {
-  }
-
-}
 
 @Component({
   selector: 'app-edit-article',
@@ -76,13 +59,7 @@ export class PreviewDialogComponent {
             matInput>
         </mat-form-field>
 
-        <mat-form-field>
-          <textarea
-            [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"
-            [placeholder]="'article.form.contents' | translate"
-            matInput rows="10"></textarea>
-          <mat-icon (click)="showPreview()" matSuffix>visibility</mat-icon>
-        </mat-form-field>
+        <simplemde [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"></simplemde>
       </div>
 
       <button
@@ -113,12 +90,5 @@ export class ArticleEditComponent {
 
   @Output()
   edited: EventEmitter<IArticle> = new EventEmitter<IArticle>();
-
-  constructor(private dialogService: MatDialog) {
-  }
-
-  showPreview() {
-    this.dialogService.open<PreviewDialogComponent, DialogDataType>(PreviewDialogComponent, {data: this.article});
-  }
 
 }

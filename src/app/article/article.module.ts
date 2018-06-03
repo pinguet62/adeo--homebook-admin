@@ -15,6 +15,7 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
+import {SimplemdeModule} from 'ng2-simplemde';
 
 import {MediaModule} from '../media';
 import {
@@ -26,7 +27,7 @@ import {
 } from '../shared';
 import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
-import {ArticleEditComponent, PreviewDialogComponent} from './article-edit.component';
+import {ArticleEditComponent} from './article-edit.component';
 import {ArticleListComponent} from './article-list.component';
 import {ArticleOfflineService} from './article-offline.service';
 import {ArticleOnlineService} from './article-online.service';
@@ -43,6 +44,7 @@ import {ArticleService} from './article.service';
     FlexLayoutModule,
     // lib
     MatButtonModule, MatCheckboxModule, MatDialogModule, MatIconModule, MatInputModule, MatListModule, MatMenuModule, MatProgressSpinnerModule, MatSelectModule, MatTooltipModule,
+    SimplemdeModule.forRoot(),
     // app
     RouterModule.forChild(routes),
     BadgeAvatarModule,
@@ -54,11 +56,8 @@ import {ArticleService} from './article.service';
   ],
   declarations: [
     ArticleComponent,
-    ArticleContentsComponent, ArticleEditComponent, PreviewDialogComponent,
+    ArticleContentsComponent, ArticleEditComponent,
     ArticleListComponent, ArticleShowComponent, ArticleCreateComponent, ArticleUpdateComponent,
-  ],
-  entryComponents: [
-    PreviewDialogComponent,
   ],
   providers: [
     ArticleService,
