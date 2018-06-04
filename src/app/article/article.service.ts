@@ -1,10 +1,11 @@
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
+import {environment} from '../../environments/environment';
+import {HomebookResult} from '../homebook';
 import {IMedia} from '../media';
-import {OfflineService} from '../shared';
-import {ArticleOfflineService} from './article-offline.service';
-import {ArticleOnlineService} from './article-online.service';
 
 export enum PartnerId {
   LEROY_MERLIN = 'leroymerlin-fr',
@@ -12,7 +13,7 @@ export enum PartnerId {
 }
 
 export interface IArticle {
-  /*readonly*/ _id?: string; // readonly/optional: updatable by offline cache
+  _id: string;
   title: string;
   summary?: string;
   engine?: string;
@@ -31,51 +32,43 @@ export interface IArticle {
 @Injectable()
 export class ArticleService {
 
-  constructor(
-    private offlineService: OfflineService,
-    private onlineArticleService: ArticleOnlineService,
-    private offlineArticleService: ArticleOfflineService,
-  ) {
+  constructor(private http: HttpClient) {
   }
 
   list(search: string = ''): Observable<IArticle[]> {
-    if (this.offlineService.isOnline) {
-      return this.onlineArticleService.list(search);
-    } else {
-      return this.offlineArticleService.list(search);
-    }
+    return this.http
+      .get<HomebookResult<IArticle[]>>(environment.apiUrl + `/package-management/article?search=${search}`)
+      .pipe(map(it => it.data));
   }
 
   get(_id: string): Observable<IArticle> {
-    if (this.offlineService.isOnline) {
-      return this.onlineArticleService.get(_id);
-    } else {
-      return this.offlineArticleService.get(_id);
-    }
+    return this.http
+      .get<HomebookResult<IArticle>>(environment.apiUrl + `/package-management/article/${_id}`)
+      .pipe(map(it => it.data));
   }
 
   create(article: IArticle): Observable<IArticle> {
-    if (this.offlineService.isOnline) {
-      return this.onlineArticleService.create(article);
-    } else {
-      return this.offlineArticleService.create(article);
-    }
+    return this.http
+      .post<HomebookResult<IArticle>>(
+        environment.apiUrl + `/package-management/article`,
+        article
+      )
+      .pipe(map(it => it.data));
   }
 
   update(article: IArticle): Observable<IArticle> {
-    if (this.offlineService.isOnline) {
-      return this.onlineArticleService.update(article);
-    } else {
-      return this.offlineArticleService.update(article);
-    }
+    return this.http
+      .put<HomebookResult<IArticle>>(
+        environment.apiUrl + `/package-management/article/${article._id}`,
+        article
+      )
+      .pipe(map(it => it.data));
   }
 
   delete(article: IArticle): Observable<any> {
-    if (this.offlineService.isOnline) {
-      return this.onlineArticleService.delete(article);
-    } else {
-      return this.offlineArticleService.delete(article);
-    }
+    return this.http
+      .delete<HomebookResult<IArticle>>(environment.apiUrl + `/package-management/article/${article._id}`)
+      .pipe(map((it) => it.data));
   }
 
 }

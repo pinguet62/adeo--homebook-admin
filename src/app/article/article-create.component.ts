@@ -18,6 +18,7 @@ export class ArticleCreateComponent {
     private articleService: ArticleService,
   ) {
     this.article = {
+      _id: null,
       title: '',
       contents: '',
       tags: [],

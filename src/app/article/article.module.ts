@@ -29,8 +29,6 @@ import {ArticleContentsComponent} from './article-contents.component';
 import {ArticleCreateComponent} from './article-create.component';
 import {ArticleEditComponent} from './article-edit.component';
 import {ArticleListComponent} from './article-list.component';
-import {ArticleOfflineService} from './article-offline.service';
-import {ArticleOnlineService} from './article-online.service';
 import {routes} from './article-routing';
 import {ArticleShowComponent} from './article-show.component';
 import {ArticleUpdateComponent} from './article-update.component';
@@ -61,8 +59,6 @@ import {ArticleService} from './article.service';
   ],
   providers: [
     ArticleService,
-    ArticleOnlineService,
-    ArticleOfflineService,
   ]
 })
 export class ArticleModule {
