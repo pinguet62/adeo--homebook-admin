@@ -1,7 +1,7 @@
 import {Component, ElementRef, EventEmitter, forwardRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm} from '@angular/forms';
-import {concat, Observable, of} from 'rxjs';
-import {finalize, map, tap} from 'rxjs/operators';
+import {concat, Observable} from 'rxjs';
+import {finalize, last, map, tap} from 'rxjs/operators';
 
 import {AlertLevel, AlertService} from '../shared';
 import {IMedia, MediaService} from './media.service';
@@ -109,10 +109,11 @@ export class MediaInputUploadComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  private processLazyActions(): Observable<any> {
+  private processLazyActions(): Observable<IMedia> {
     this.loading = true;
     const actions = [this.lazyDelete, this.lazyUpload].filter((it) => !!it);
-    return concat(...actions, of(null))
+    return concat(...actions)
+      .pipe(last(() => true, this.media /*unmodified*/))
       .pipe(tap((it) => this.media = it))
       .pipe(finalize(() => this.loading = false));
   }

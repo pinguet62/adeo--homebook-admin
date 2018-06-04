@@ -166,6 +166,8 @@ describe('media/media-input-upload.component', () => {
       // check
       expect(mediaService.delete).not.toHaveBeenCalled();
       expect(mediaService.upload).not.toHaveBeenCalled();
+      expect(fixture.componentInstance.media).toBeNull();
+      expect(ngFormNgSubmit.emit.calls.count()).toEqual(1);
       expect(ngFormNgSubmit.emit).toHaveBeenCalledWith(formValue);
     }));
 
@@ -180,6 +182,8 @@ describe('media/media-input-upload.component', () => {
       // check
       expect(mediaService.delete).not.toHaveBeenCalled();
       expect(mediaService.upload).toHaveBeenCalledWith(newFile);
+      expect(fixture.componentInstance.media).not.toBeNull();
+      expect(ngFormNgSubmit.emit.calls.count()).toEqual(1);
       expect(ngFormNgSubmit.emit).toHaveBeenCalledWith(formValue);
     }));
 
@@ -194,6 +198,8 @@ describe('media/media-input-upload.component', () => {
       // check
       expect(mediaService.delete).not.toHaveBeenCalled();
       expect(mediaService.upload).not.toHaveBeenCalled();
+      expect(fixture.componentInstance.media).not.toBeNull();
+      expect(ngFormNgSubmit.emit.calls.count()).toEqual(1);
       expect(ngFormNgSubmit.emit).toHaveBeenCalledWith(formValue);
     }));
 
@@ -216,6 +222,8 @@ describe('media/media-input-upload.component', () => {
       // check
       expect(mediaService.delete).toHaveBeenCalledWith(oldMedia);
       expect(mediaService.upload).toHaveBeenCalledWith(newFile);
+      expect(fixture.componentInstance.media).not.toBeNull();
+      expect(ngFormNgSubmit.emit.calls.count()).toEqual(1);
       expect(ngFormNgSubmit.emit).toHaveBeenCalledWith(formValue);
     }));
 
@@ -235,6 +243,8 @@ describe('media/media-input-upload.component', () => {
       // check
       expect(mediaService.delete).toHaveBeenCalledWith(oldMedia);
       expect(mediaService.upload).not.toHaveBeenCalled();
+      expect(fixture.componentInstance.media).toBeNull();
+      expect(ngFormNgSubmit.emit.calls.count()).toEqual(1);
       expect(ngFormNgSubmit.emit).toHaveBeenCalledWith(formValue);
     }));
   });
