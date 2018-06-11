@@ -23,7 +23,7 @@ import {
         </mat-chip>
 
         <input
-          #input
+          #input [name]="name"
           [matAutocomplete]="autocomplete"
           [matChipInputFor]="chipList"
           (matChipInputTokenEnd)="addChipValue($event)"
@@ -42,6 +42,8 @@ import {
 export class ChipListAutocompleteComponent implements ControlValueAccessor {
 
   private static readonly NO_ACTION = (() => void 0);
+
+  @Input() name;
 
   @Input() placeholder = '';
 

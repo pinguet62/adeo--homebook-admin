@@ -22,7 +22,7 @@ export interface HomebookJwtToken {
 })
 export class LoginService {
 
-  private static readonly LOCALSTORAGE_JWTTOKEN_KEY = 'jwtToken';
+  public static readonly LOCALSTORAGE_JWTTOKEN_KEY = 'jwtToken';
 
   public jwtToken: string;
 
