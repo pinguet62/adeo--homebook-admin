@@ -19,6 +19,9 @@ exports.config = {
     defaultTimeoutInterval: 30000,
     print: function() {}
   },
+  plugins: [
+    {package: 'protractor-backend-mock-plugin', backend: [3333, 'localhost'], fake: [3334, 'localhost']}
+  ],
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
