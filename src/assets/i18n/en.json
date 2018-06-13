@@ -11,7 +11,8 @@
       "title": "Are you sure?"
     },
     "toolbar": {
-      "app": "Application"
+      "app": "Application",
+      "logout": "Logout"
     },
     "security": {
       "roleguard": {

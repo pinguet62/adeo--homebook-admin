@@ -11,7 +11,8 @@
       "title": "Êtes-vous sûr ?"
     },
     "toolbar": {
-      "app": "Application"
+      "app": "Application",
+      "logout": "Déconnexion"
     },
     "security": {
       "roleguard": {

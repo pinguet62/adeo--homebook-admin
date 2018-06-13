@@ -18,17 +18,17 @@ import {LoginService} from './shared';
 
       <span style="flex: 1 1 auto;"></span>
 
-      <a [href]="environment.appUrl" target="_blank" rel="noopener" fxShow.lt-md="false" mat-button>
-        {{'common.toolbar.app' | translate}}
-      </a>
-
       <button [matMenuTriggerFor]="appMenu" aria-label="Options" mat-icon-button>
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #appMenu="matMenu">
+        <a [href]="environment.appUrl" target="_blank" rel="noopener" mat-menu-item>
+          <mat-icon>get_app</mat-icon>
+          <span>{{'common.toolbar.app' | translate}}</span>
+        </a>
         <button (click)="loginService.logout()" [routerLink]="['/']" mat-menu-item>
           <mat-icon>exit_to_app</mat-icon>
-          <span>Logout</span>
+          <span>{{'common.toolbar.logout' | translate}}</span>
         </button>
       </mat-menu>
     </mat-toolbar>
