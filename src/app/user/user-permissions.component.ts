@@ -43,7 +43,7 @@ import {IUser, UserService} from './user.service';
           <form *ngIf="user" (ngSubmit)="savePermissions()" fxLayout="column">
             <chip-list-autocomplete
               [(ngModel)]="user.permissions" #permissionsModel="ngModel" name="permissions"
-              [suggestions]="['users.manage', 'notification.send', 'package-management.manage']"
+              [suggestions]="['users.manage', 'notification.send', 'package-management.manage', 'webcrawler']"
               [placeholder]="'user.permissions.editStep.value' | translate">
             </chip-list-autocomplete>
             <button type="submit" mat-raised-button color="primary">{{'common.save' | translate}}</button>
