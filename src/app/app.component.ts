@@ -63,6 +63,13 @@ import {LoginService} from './shared';
             <mat-icon mat-list-icon>person</mat-icon>
             <span mat-line>{{'user.title' | translate}}</span>
           </mat-list-item>
+
+          <mat-list-item
+            routerLink="/feature-flipping" (click)="media.isActive('gt-sm') ? null : sidenav.close()"
+            routerLinkActive="menu-selected">
+            <mat-icon mat-list-icon>check_box</mat-icon>
+            <span mat-line>{{'featureFlipping.title' | translate}}</span>
+          </mat-list-item>
         </mat-nav-list>
       </mat-sidenav>
 

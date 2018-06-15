@@ -17,4 +17,9 @@ export const routes: Routes = [
       {path: '', loadChildren: 'app/user/user.module#UserModule'},
     ]
   },
+  {
+    path: 'feature-flipping', component: RouterOutletComponent, canActivate: [LoginGuard, RoleGuard], data: {roles: ['feature-flipping.manage']}, children: [
+      {path: '', loadChildren: 'app/feature-flipping/feature-flipping.module#FeatureFlippingModule'},
+    ]
+  },
 ];

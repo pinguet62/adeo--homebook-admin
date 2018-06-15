@@ -1,4 +1,13 @@
-import {DebugElement, Directive, EventEmitter, HostListener, Output, Predicate} from '@angular/core';
+import {
+  DebugElement,
+  Directive,
+  EventEmitter,
+  HostListener,
+  Output,
+  Pipe,
+  PipeTransform,
+  Predicate
+} from '@angular/core';
 import {MatIcon} from '@angular/material';
 import {By} from '@angular/platform-browser';
 
@@ -73,4 +82,13 @@ export class DisabledConfirmDialogDirective {
     this.confirmedClick.emit(event);
   }
 
+}
+
+@Pipe({
+  name: 'translate'
+})
+export class MockedTranslatePipe implements PipeTransform {
+  transform(value: string) {
+    return value;
+  }
 }

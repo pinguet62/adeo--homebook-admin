@@ -24,6 +24,7 @@
     "_": "Valeur invalide",
     "required": "La valeur est requise",
     "email": "La valeur doit être un \"email\" valide",
+    "minlength": "La valeur doit avoir au moins {{requiredLength}} caractères",
     "pattern": "La valeur doit matcher avec le motif \"{{requiredPattern}}\"",
     "objectId": "La valeur doit être un \"ObjectId\" valide"
   },
@@ -66,6 +67,20 @@
         "title": "Permissions",
         "value": "Codes"
       }
+    }
+  },
+  "featureFlipping": {
+    "title": "Feature Flipping",
+    "model": {
+      "key": "Clé",
+      "enabled": "Activé ?"
+    },
+    "list": {
+      "actions": "Actions"
+    },
+    "create": {
+      "title": "Nouvelle \"Feature Flipping\"",
+      "submit": "Créer"
     }
   }
 }

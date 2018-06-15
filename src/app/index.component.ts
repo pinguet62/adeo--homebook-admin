@@ -13,6 +13,11 @@ import {Title} from '@angular/platform-browser';
         <img src="/assets/user.jpg" alt="User">
         <h2>{{'user.title' | translate}}</h2>
       </div>
+
+      <div class="box" routerLink="/feature-flipping">
+        <img src="/assets/feature-flipping.jpg" alt="Feature flipping">
+        <h2>{{'featureFlipping.title' | translate}}</h2>
+      </div>
     </div>
   `,
   styleUrls: ['./index.component.scss']
