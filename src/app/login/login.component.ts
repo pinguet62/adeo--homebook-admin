@@ -21,7 +21,7 @@ import {LoginService, ORIGINAL_URL} from '../shared';
               matInput
               autocomplete="email">
             <mat-error *ngIf="emailModel.control.invalid">
-              {{emailModel.control.errors | errorTranslate | async}}
+              {{emailModel.control.errors | errorTranslate}}
             </mat-error>
           </mat-form-field>
 
@@ -35,7 +35,7 @@ import {LoginService, ORIGINAL_URL} from '../shared';
               matInput
               autocomplete="password">
             <mat-error *ngIf="passwordModel.control.invalid">
-              {{passwordModel.control.errors | errorTranslate | async}}
+              {{passwordModel.control.errors | errorTranslate}}
             </mat-error>
           </mat-form-field>
         </mat-card-content>
@@ -72,9 +72,7 @@ export class LoginComponent implements OnInit {
     translateService: TranslateService,
     private loginService: LoginService
   ) {
-    translateService.get('login.title').subscribe(x =>
-      titleService.setTitle(x)
-    );
+    titleService.setTitle(translateService.instant('login.title'));
   }
 
   ngOnInit(): void {

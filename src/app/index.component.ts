@@ -24,9 +24,7 @@ export class IndexComponent {
     titleService: Title,
     translateService: TranslateService,
   ) {
-    translateService.get('common.title').subscribe(x =>
-      titleService.setTitle(x)
-    );
+    titleService.setTitle(translateService.instant('common.title'));
   }
 
 }

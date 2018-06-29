@@ -19,7 +19,7 @@ import {IUser, UserService} from './user.service';
                 [requiredWithout]="userEmailModel" objectId
                 [placeholder]="'user.permissions.searchStep.id' | translate" matInput>
               <mat-error *ngIf="userIdModel.control.invalid">
-                {{userIdModel.control.errors | errorTranslate | async}}
+                {{userIdModel.control.errors | errorTranslate}}
               </mat-error>
             </mat-form-field>
             <mat-form-field style="padding: 0px 16px;">
@@ -29,7 +29,7 @@ import {IUser, UserService} from './user.service';
                 [requiredWithout]="userIdModel" email
                 [placeholder]="'user.permissions.searchStep.email' | translate" matInput>
               <mat-error *ngIf="userEmailModel.control.invalid">
-                {{userEmailModel.control.errors | errorTranslate | async}}
+                {{userEmailModel.control.errors | errorTranslate}}
               </mat-error>
             </mat-form-field>
             <button type="submit" [disabled]="!searchForm.form.valid" mat-raised-button>

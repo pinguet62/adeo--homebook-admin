@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
-import {Observable, of} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
 
 import {AlertLevel, AlertService} from '../alert';
 import {LoginService} from './login.service';
@@ -27,15 +25,15 @@ export class RoleGuard implements CanActivate {
   ) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const requiredRoles = route.data.roles as string[];
     const missingRoles = requiredRoles.filter(it => !this.loginService.permissions.includes(it));
     if (missingRoles.length === 0) {
-      return of(true);
+      return true;
     } else {
-      return this.translateService.get('common.security.roleguard.missingrole', {roles: JSON.stringify(missingRoles)})
-        .pipe(tap(it => this.alertService.show(it, AlertLevel.ERROR)))
-        .pipe(map(() => false));
+      const message = this.translateService.instant('common.security.roleguard.missingrole', {roles: JSON.stringify(missingRoles)});
+      this.alertService.show(message, AlertLevel.ERROR);
+      return false;
     }
   }
 

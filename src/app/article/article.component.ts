@@ -13,9 +13,7 @@ export class ArticleComponent {
     titleService: Title,
     translateService: TranslateService
   ) {
-    translateService.get('article.title').subscribe(x =>
-      titleService.setTitle(x)
-    );
+    titleService.setTitle(translateService.instant('article.title'));
   }
 
 }

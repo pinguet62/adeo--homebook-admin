@@ -18,7 +18,7 @@ import {IArticle, PartnerId} from './article.service';
             [placeholder]="'article.form.title' | translate"
             matInput>
           <mat-error *ngIf="titleModel.control.invalid">
-            {{titleModel.control.errors | errorTranslate | async}}
+            {{titleModel.control.errors | errorTranslate}}
           </mat-error>
         </mat-form-field>
 
