@@ -4,7 +4,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {Observable, of} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
-import {AlertLevel, AlertService} from '..';
+import {AlertLevel, AlertService} from '../alert';
 import {LoginService} from './login.service';
 
 /**
