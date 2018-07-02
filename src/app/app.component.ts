@@ -13,7 +13,7 @@ import {LoginService} from './shared';
         <mat-icon>menu</mat-icon>
       </button>
 
-      <button routerLink="/" fxShow.lt-md="false" mat-button><h1>Homebook admin</h1></button>
+      <button routerLink="/" fxShow.lt-md="false" mat-button><h1>{{'common.title' | translate}}</h1></button>
       <span>{{titleService.getTitle()}}</span>
 
       <span style="flex: 1 1 auto;"></span>

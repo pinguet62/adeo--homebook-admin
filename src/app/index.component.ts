@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   template: `
@@ -20,11 +19,8 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class IndexComponent {
 
-  constructor(
-    titleService: Title,
-    translateService: TranslateService,
-  ) {
-    titleService.setTitle(translateService.instant('common.title'));
+  constructor(titleService: Title) {
+    titleService.setTitle('');
   }
 
 }
