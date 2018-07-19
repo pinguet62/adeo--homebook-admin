@@ -16,6 +16,7 @@ import {RouterModule} from '@angular/router';
 import {ServiceWorkerModule} from '@angular/service-worker';
 
 import {environment} from '../environments/environment';
+import {ConfigInitializerModule} from './app-config-initializer';
 import {routes} from './app-routing';
 import {AppComponent} from './app.component';
 import {IndexComponent} from './index.component';
@@ -35,6 +36,7 @@ import {AlertModule, GlobalErrorModule, I18nRootModule, SecurityModule} from './
     // app
     RouterModule.forRoot(routes),
     AlertModule,
+    ConfigInitializerModule,
     GlobalErrorModule,
     I18nRootModule,
     SecurityModule,
