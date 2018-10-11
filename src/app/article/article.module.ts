@@ -34,6 +34,7 @@ import {ArticleShowComponent} from './article-show.component';
 import {ArticleUpdateComponent} from './article-update.component';
 import {ArticleComponent} from './article.component';
 import {ArticleService} from './article.service';
+import {SimplemdeMediaComponent} from './simplemde-media.component';
 
 @NgModule({
   imports: [
@@ -56,6 +57,7 @@ import {ArticleService} from './article.service';
     ArticleComponent,
     ArticleContentsComponent, ArticleEditComponent,
     ArticleListComponent, ArticleShowComponent, ArticleCreateComponent, ArticleUpdateComponent,
+    SimplemdeMediaComponent,
   ],
   providers: [
     ArticleService,

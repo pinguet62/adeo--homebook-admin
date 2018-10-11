@@ -1,5 +1,4 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-
 import {IArticle, PartnerId} from './article.service';
 
 @Component({
@@ -31,7 +30,8 @@ import {IArticle, PartnerId} from './article.service';
           <mat-select [(value)]="article.partnerId" [placeholder]="'article.form.partner' | translate">
             <mat-select-trigger *ngIf="article.partnerId">
               <span fxLayoutAlign="flex-start center">
-                <img [src]="'assets/partner/' + article.partnerId + '.svg'" [alt]="id" class="app-avatar">
+                <img [src]="'assets/partner/' + article.partnerId + '.svg'" [alt]="article.partnerId"
+                     class="app-avatar">
                 {{article.partnerId}}
               </span>
             </mat-select-trigger>
@@ -59,7 +59,7 @@ import {IArticle, PartnerId} from './article.service';
             matInput>
         </mat-form-field>
 
-        <simplemde [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"></simplemde>
+        <simplemde-upload [(ngModel)]="article.contents" #contentsModel="ngModel" name="contents"></simplemde-upload>
       </div>
 
       <button

@@ -18,7 +18,7 @@ import {IMedia, MediaService} from './media.service';
     </div>
     <div *ngIf="!loading">
       <div *ngIf="!media">
-        <input #inputFile type="file" (change)="inputFileChange($event.target.files[0])" accept="image/*" hidden>
+        <input #inputFile type="file" accept="image/*" (change)="inputFileChange($event.target.files[0])" hidden>
         <button (click)="requestUpload()" type="button" mat-icon-button>
           <mat-icon>file_upload</mat-icon>
         </button>
@@ -65,7 +65,7 @@ export class MediaInputUploadComponent implements OnInit, ControlValueAccessor {
     this._onChange(media);
   }
 
-  @ViewChild('inputFile') inputFile: ElementRef;
+  @ViewChild('inputFile') inputFile: ElementRef<HTMLInputElement>;
 
   /** @see ControlValueAccessor#registerOnTouched */
   private _onTouched: () => void = MediaInputUploadComponent.NO_ACTION;
@@ -127,6 +127,7 @@ export class MediaInputUploadComponent implements OnInit, ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
+    // not implemented
   }
 
   /** Used by `[ngModel]="attr"` input binding. */
@@ -151,8 +152,10 @@ export class MediaInputUploadComponent implements OnInit, ControlValueAccessor {
       this.mediaService.upload(file)
         .pipe(finalize(() => this.loading = false))
         .subscribe(
-          (it) => this.media = it,
-          (err: Error) => this.alertService.show(err.message, AlertLevel.ERROR)
+          (it) => {
+            this.inputFile.nativeElement.value = null; // allow consecutive uploads
+            this.media = it;
+          }, (err: Error) => this.alertService.show(err.message, AlertLevel.ERROR)
         );
     } else {
       const fileReader = new FileReader();
