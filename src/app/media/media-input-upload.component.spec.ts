@@ -7,7 +7,7 @@ import {By} from '@angular/platform-browser';
 import {of, throwError} from 'rxjs';
 
 import {AlertService} from '../shared';
-import {buttonMatIcon, DisabledConfirmDialogDirective, spyFileReaderSync} from '../test-utils';
+import {buttonMatIcon, DisabledConfirmDialogDirective, spyFileReaderSync} from '../test-utils.spec';
 import {MediaInputUploadComponent} from './media-input-upload.component';
 import {IMedia, MediaService} from './media.service';
 

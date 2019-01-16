@@ -8,7 +8,7 @@ import {AlertLevel, AlertService} from '../shared';
   selector: 'simplemde-upload',
   template: `
     <simplemde #element [(ngModel)]="value"></simplemde>
-    <input #inputFile type="file" accept="image/*"(change)="inputFileChange($event.target.files[0])" hidden>
+    <input #inputFile type="file" accept="image/*" (change)="inputFileChange($event.target.files[0])" hidden>
   `,
   providers: [
     {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => SimplemdeMediaComponent), multi: true},

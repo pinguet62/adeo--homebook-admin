@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {ObservableMedia} from '@angular/flex-layout';
+import {MediaObserver} from '@angular/flex-layout';
 import {Title} from '@angular/platform-browser';
 
 import {environment} from '../environments/environment';
@@ -106,7 +106,7 @@ export class AppComponent {
 
   constructor(
     public titleService: Title,
-    public media: ObservableMedia,
+    public media: MediaObserver,
     public loginService: LoginService
   ) {
   }

@@ -7,7 +7,7 @@ import {By} from '@angular/platform-browser';
 import {TranslateService} from '@ngx-translate/core';
 import {of, throwError} from 'rxjs';
 import {AlertLevel, AlertService} from '../shared';
-import {DisabledConfirmDialogDirective, MockedTranslatePipe} from '../test-utils';
+import {DisabledConfirmDialogDirective, MockedTranslatePipe} from '../test-utils.spec';
 import {FeatureFlippingListComponent} from './feature-flipping-list.component';
 import {FeatureFlippingService, IFeature} from './feature-flipping.service';
 

@@ -9,7 +9,7 @@
 }
 
 .box {
-  @extend .mat-elevation-z8;
+  @include mat-elevation(8);
   margin: 40px;
 }
 

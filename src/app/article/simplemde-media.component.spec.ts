@@ -34,7 +34,7 @@ describe('article/simplemde-upload.component', () => {
     fixture.detectChanges();
   }));
 
-  /** @returns {File} The uploaded {@link File}. */
+  /** @returns The uploaded {@link File}. */
   function fakeUpload(filename: string = 'filename.jpg'): File {
     const data = new DataTransfer();
     const file = new File(['content...'], filename);
@@ -70,7 +70,7 @@ describe('article/simplemde-upload.component', () => {
 
     // execute
     const file = fakeUpload(title);
-    tick(750);
+    tick(1000); // TODO find better workaround
 
     // check
     expect(mediaService.upload).toHaveBeenCalledWith(file);
